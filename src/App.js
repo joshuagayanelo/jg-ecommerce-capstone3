@@ -22,9 +22,9 @@ function App() {
     <h1>Welcome to the course booking batch 164</h1>
     <h5>This is our project in React</h5>
     <h6>Come visit our website.</h6>
-
     <img src={cartoon} alt="image not found" />
     <h3>This is my favorite Cartoon Character.</h3>
+    <img src="/image/tom-and-jerry2.jpg"/>;
 
   </div>
   );
