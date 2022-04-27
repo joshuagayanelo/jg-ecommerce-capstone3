@@ -2,6 +2,7 @@ import './App.css';
 //get the component that you want to display in the browser by specifying the location and the file you want to retrieve and use.
 import Banner from './components/Banner';
 import AppNavBar from './components/AppNavBar';
+import Highlights from './components/Highlights';
 
 //Create a JSX element for the variable that describes the component.
 
@@ -11,7 +12,8 @@ export default function App() {
   return (
       <div>
          <AppNavBar/>
-         <Banner/>   
+         <Highlights/>  
+         <Banner/>  
      </div>
     );
 }

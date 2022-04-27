@@ -13,7 +13,6 @@ export default function AppNavbar() {
 					<Nav.Link> Login </Nav.Link>
 					<Nav.Link> Courses </Nav.Link>
 				</Nav>
-
 			</Navbar.Collapse>
 		</Navbar>
 	)
