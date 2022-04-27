@@ -1,33 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
+//get the component that you want to display in the browser by specifying the location and the file you want to retrieve and use.
+import Banner from './components/Banner';
 
-// remove the template in the module
+//Create a JSX element for the variable that describes the component.
 
-// asdf
-
-//Save an image of your favorite cartoon character inside the public folder.  
-
-// NEW SKILL: Identify how to access resources and elements from the public folder/library of th eproject.
-
-// PUBLIC -> To store all documents and modules that are shared accross all components of the app that are visible to all.
-
-// To acquire the image you want to display you may want to get from the public folder first. IMport the element 
-
-import cartoon from './tom-and-jerry2.jpg';
-    // pass down the alias that identifies the resource into our element.
-
-function App() {
+//refactor the template to have a much conside script. 
+//export default -> this keyword is used to 'expose' the component/function across all modules in the application. 
+export default function App() {
   return (
-  <div>
-    <h1>Welcome to the course booking batch 164</h1>
-    <h5>This is our project in React</h5>
-    <h6>Come visit our website.</h6>
-    <img src={cartoon} alt="image not found" />
-    <h3>This is my favorite Cartoon Character.</h3>
-    <img src="/image/tom-and-jerry2.jpg"/>;
-
-  </div>
-  );
+      <div>
+         <Banner />    
+     </div>
+    );
 }
-
-export default App;
