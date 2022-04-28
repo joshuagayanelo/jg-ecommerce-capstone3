@@ -6,7 +6,7 @@ export default function Highlights() {
 	return(
 		<Row className="mt-5 mb-5" >
 			<Col xs={12} md={4}>
-				<Card className = "p-3">
+				<Card className = "p-3 cardHighlight">
 					<Card.Body>
 						<Card.Title>Learn From Home</Card.Title>
 						<Card.Text>
@@ -17,9 +17,9 @@ export default function Highlights() {
 			</Col>
 
 			<Col xs={12} md={4}>
-				<Card className = "p-3">
+				<Card className = "p-3 cardHighlight">
 					<Card.Body>
-						<Card.Title>Learn From Home</Card.Title>
+						<Card.Title>Study Now, Pay Later</Card.Title>
 						<Card.Text>
 							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, sint! Tenetur, nostrum! Perspiciatis, consequuntur impedit!
 						</Card.Text>
@@ -28,9 +28,9 @@ export default function Highlights() {
 			</Col>
 
 			<Col xs={12} md={4}>
-				<Card className = "p-3">
+				<Card className = "p-3 cardHighlight">
 					<Card.Body>
-						<Card.Title>Learn From Home</Card.Title>
+						<Card.Title>Be Part of our Community</Card.Title>
 						<Card.Text>
 							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, sint! Tenetur, nostrum! Perspiciatis, consequuntur impedit!
 						</Card.Text>

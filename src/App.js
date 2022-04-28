@@ -1,17 +1,18 @@
 import './App.css';
 
-import Banner from './components/Banner';
 import AppNavBar from './components/AppNavBar';
-import Highlights from './components/Highlights';
-import CourseCard from './components/CourseCard';
+// import Banner from './components/Banner';
+// import Highlights from './components/Highlights';
+// import CourseCard from './components/CourseCard';
+
+
+import Home from './pages/Home';
 
 export default function App() {
   return (
       <div>
          <AppNavBar/>
-         <CourseCard/>
-         <Highlights/>  
-         <Banner/> 
+         <Home/>
      </div>
     );
 }
