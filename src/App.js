@@ -7,16 +7,19 @@ import Register from './pages/Register';
 import Courses from './pages/Courses';
 import ErrorPage from './pages/Error'
 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 export default function App() {
   return (
-      <div>
+      <Router>
          <AppNavBar />
-         <Home />
-         <Login />
-         <Register />
-         <Courses />
-         <ErrorPage />
-     </div>
+         <Routes>
+           <Route path='/' element={<Home />} />
+           <Route path='/login' element={<Login />} />
+           <Route path='/Register' element={<Register />} />
+           <Route path='/Courses' element={<Courses />} />
+           <Route path='*' element={<ErrorPage />} />
+         </Routes>
+     </Router>
     );
 }
