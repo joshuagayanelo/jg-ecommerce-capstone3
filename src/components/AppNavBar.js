@@ -1,4 +1,5 @@
 import {Navbar, Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 export default function AppNavbar() {
 	return(
@@ -9,11 +10,12 @@ export default function AppNavbar() {
 			<Navbar.Toggle aria-controls="basic-navbar-nav"/>
 			<Navbar.Collapse id="basic-navbar-nav">
 				<Nav className="ml-auto">
-					<Nav.Link> Register </Nav.Link>
-					<Nav.Link> Login </Nav.Link>
-					<Nav.Link> Courses </Nav.Link>
+					<Link className="ml-1"to='/Home'> Home </Link>
+					<Link className="ml-1"to='/Register'> Register </Link>
+					<Link className="ml-1"to='/Login'> Login </Link>
+					<Link className="ml-1"to='/Courses'> Courses </Link>
 				</Nav>
 			</Navbar.Collapse>
 		</Navbar>
 	)
-}; 
+};
