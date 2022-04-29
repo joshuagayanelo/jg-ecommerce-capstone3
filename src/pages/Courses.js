@@ -7,10 +7,15 @@ import { Container } from 'react-bootstrap';
 
     //the comtainer component from bootstrap will be used to add margin around the components inside the page.
 //2. Create a function that will describe the anatomy of the page.
+const bannerCourse = {
+    title: 'Welcome to The Courses Cataglog',
+    content: 'Browse and Enroll to our Wide Array of Courses.'
+}
+
 export default function Courses(){
     return (
         <Container>
-            <Banner />
+            <Banner bannerData={bannerCourse} />
             <h1 className='text-center mt-3 mb-3'> Courses Catalog Page </h1>
             <CourseCard/>
         </Container>
