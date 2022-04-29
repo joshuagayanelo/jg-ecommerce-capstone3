@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Courses from './pages/Courses';
 import ErrorPage from './pages/Error'
+import Footer from './components/Footer';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -20,6 +21,7 @@ export default function App() {
            <Route path='/Courses' element={<Courses />} />
            <Route path='*' element={<ErrorPage />} />
          </Routes>
+         <Footer />
      </Router>
     );
 }

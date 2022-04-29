@@ -1,11 +1,11 @@
 import {Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-export default function AppNavbar() {
+export default function AppNavBar() {
 	return(
 		<Navbar bg="light" expang="lg">
 			<Navbar.Brand>
-				Course Booking App B164
+				ARRAL
 			</Navbar.Brand>
 			<Navbar.Toggle aria-controls="basic-navbar-nav"/>
 			<Navbar.Collapse id="basic-navbar-nav">
