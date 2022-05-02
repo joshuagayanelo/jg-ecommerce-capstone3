@@ -29,6 +29,7 @@ export default function Login() {
 					<Form.Control 
 						type="email"
 						placeholder="Enter your email address here"
+						required
 					/>	
 				</Form.Group>
 				{/*Password*/}
@@ -37,6 +38,7 @@ export default function Login() {
 					<Form.Control 
 						type="password"
 						placeholder="Please enter your password here"
+						required
 					/>
 				</Form.Group>
 
