@@ -1,5 +1,6 @@
 import Banner from './../components/Banner';
 import { Container, Form, Button } from 'react-bootstrap';
+import Swal from 'sweetalert2'; 
 
 const bannerLogin = {
 	title: 'Sign in to your account here',
@@ -7,11 +8,21 @@ const bannerLogin = {
 }
 
 export default function Login() {
+	// Define an event that will determine the moment when this function will run.
+	const loginUser = (event) => {
+		event.preventDefault();
+		Swal.fire({
+			icon: 'success',
+			title: 'Login Succesful',
+			text: 'You have inserted the correct credentials.'
+		});
+	};
+
 	return(
 		<Container>
 			<Banner bannerData = {bannerLogin} />
 			<h1 className="text-center mt-3">Login Page</h1>
-			<Form className="mt-5">
+			<Form className="mt-5" onSubmit={event => loginUser(event)}>
 				{/*Email address*/}
 				<Form.Group>
 					<Form.Label>Email:</Form.Label>	
