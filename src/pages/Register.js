@@ -1,7 +1,6 @@
 import {Container, Form, Button } from 'react-bootstrap';
 import Banner from './../components/Banner';
 import Swal from 'sweetalert2'
-import validPrefix from './../prefix/prefixes'
 
 const bannerRegiser = {
 	title: 'Sign up here',
