@@ -1,6 +1,7 @@
 import {Container, Form, Button } from 'react-bootstrap';
 import Banner from './../components/Banner';
 import Swal from 'sweetalert2'
+// import {useState} from 'react';
 
 const bannerRegiser = {
 	title: 'Sign up here',
@@ -18,9 +19,11 @@ export default function Register() {
 		});
 	};
 
+	// const [formErrors, setFormErrors] = useSate({});
+
 	const validateNumber = (event) => {
 		event.preventDefault();
-		console.log(event);
+		// console.log(event);
 
 		const value = event.target.value;
 		console.log(value);
@@ -31,8 +34,7 @@ export default function Register() {
 		const preFixes = [
 		// Globe
 		"0817", "09173", "09175", "09176","09178","09253",
-		"09255", "09256", "09257", "09258","0905","0906",
-		"0915", "0916", "0917", "0927","0935","0936",
+		"09255", "09256", "09257", "09258","0905","0906", "0915", "0916", "0917", "0927","0935","0936",
 		"0937", "0945", "0953", "0955","0956","0965",
 		"0966", "0967", "0975", "0976","0977","0978",
 		"0979",
@@ -56,16 +58,14 @@ export default function Register() {
 		console.log(isValid);
 
 		const errorMessage = [];
+
 		if(isValid) {
 			return true;
 		} else {
-			errorMessage.push("Mobile number is not valid.") 
-			console.log(errorMessage)
+			errorMessage.push('Invalid Mobile number')
+			console.log(errorMessage);
 		};
-
 	};
-
-
 
 	 
 	return (
@@ -114,7 +114,7 @@ export default function Register() {
 				 		title="Please enter a valid mobile number."
 				 		onKeyUp={e => validateNumber(e)}
 				  	/>
-				  	<span className="text-danger">{validateNumber.errorMessage}</span>
+				  	<span className="text-danger">{}</span>
 				  </Form.Group>
 
 

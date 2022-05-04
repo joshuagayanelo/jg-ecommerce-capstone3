@@ -17,7 +17,7 @@ export default function CourseCard({courseProp}) {
 	function enroll() {
 
 		if(seatCount  == 0){
-			Swal.fire('Ubos na po')
+			Swal.fire('Sorry, there are no more seats available.')
 
 		} else {
 
@@ -43,7 +43,7 @@ export default function CourseCard({courseProp}) {
 				<Card.Text>Enrollees: {count}</Card.Text>
 				<Card.Text>Available seats: {seatCount}</Card.Text>
 				<Button variant ="primary" onClick={enroll}>Enroll</Button>
-			</Card.Body>			
+			</Card.Body>
 		</Card>
 	);
 }

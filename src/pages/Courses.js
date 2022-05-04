@@ -10,7 +10,7 @@ import coursesData from '../data/coursesData';
     //the comtainer component from bootstrap will be used to add margin around the components inside the page.
 //2. Create a function that will describe the anatomy of the page.
 const bannerCourse = {
-    title: 'Welcome to The Courses Cataglog',
+    title: 'Welcome to The Courses Catalog',
     content: 'Browse and Enroll to our Wide Array of Courses.'
 }
 
@@ -22,7 +22,7 @@ export default function Courses(){
         
         return(
             <CourseCard key={course.id} courseProp={course} />
-            ) 
+        ) 
 
     });
 
