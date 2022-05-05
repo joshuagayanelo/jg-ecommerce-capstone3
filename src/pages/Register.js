@@ -10,14 +10,14 @@ const bannerRegiser = {
 
 export default function Register() {
 
-	const registerUser = (event) => {
-			event.preventDefault();
-			Swal.fire({
-			icon: 'success',
-			title: 'Registration Succesful',
-			text: 'Your account has been successfully created. You may now log in.'
-		});
-	};
+	// const registerUser = (event) => {
+	// 		event.preventDefault();
+	// 		Swal.fire({
+	// 		icon: 'success',
+	// 		title: 'Registration Succesful',
+	// 		text: 'Your account has been successfully created. You may now log in.'
+	// 	});
+	// };
 
 	//State hooks to store the values of the input fields,
 	const[email, setEmail] = useState("");
@@ -80,7 +80,7 @@ export default function Register() {
 			    onChange={e => setPassword2(e.target.value)}
 			    required/>
 			  </Form.Group>
-			   {/*Conditionally renders button based on the active state*/}
+			  {/*Conditionally renders button based on the active state*/}
 			  {
 			  	isActive ?
 			  	<Button variant="primary" type="submit" id="submitBtn">
@@ -91,9 +91,6 @@ export default function Register() {
 			  	  Submit
 			  	</Button>
 			  }
-
-
-
 
 			</Form>		
 
