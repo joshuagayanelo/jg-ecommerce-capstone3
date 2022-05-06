@@ -1,4 +1,6 @@
-import { Container } from 'react-bootstrap';
+import { Container, Col, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
 // import Banner from '../components/Banner';
 
 // const bannerError = {
@@ -10,8 +12,9 @@ export default function ErrorPage () {
 	return(
 		<Container className="text-center">
 			{/*<Banner bannerData={bannerError} />*/}
-			<h1 className = "mt-5"> 404 Page not found</h1>
-			<button className="btn btn-primary mt-3 align-center" to="/">Go back to Home Page</button>
+			<h1 className = "mt-5"> Awts...</h1>
+			<p className = "mt-1 mb-3">404 Page Not Found</p>
+			<Button variant="primary" as={Link } to="/" >Take me back home</Button>
 		</Container>
 	);
 };
