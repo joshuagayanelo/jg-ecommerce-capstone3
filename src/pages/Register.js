@@ -10,20 +10,30 @@ const bannerRegiser = {
 
 export default function Register() {
 
-	// const registerUser = (event) => {
-	// 		event.preventDefault();
-	// 		Swal.fire({
-	// 		icon: 'success',
-	// 		title: 'Registration Succesful',
-	// 		text: 'Your account has been successfully created. You may now log in.'
-	// 	});
+	// function registerUser(e){
+	// 		e.preventDefault();
+			
+	// 		setEmail("");
+	// 		setPassword1("");
+	// 		setPassword2("");
+
+	// 		Swal.fire("Thank you for registering!");
 	// };
+
+	const registerUser = (e) => {
+	 		e.preventDefault();
+			
+			setEmail("");
+			setPassword1("");
+			setPassword2("");
+
+			Swal.fire("Thank you for registering!");
+	};
 
 	//State hooks to store the values of the input fields,
 	const[email, setEmail] = useState("");
 	const[password1, setPassword1] = useState("");
 	const[password2, setPassword2] = useState("");
-
 	//State to determin whether the button is enabled or not.
 	const [isActive, setIsActive] = useState(false);
 
@@ -44,7 +54,7 @@ export default function Register() {
 			<Banner bannerData = {bannerRegiser}/>
 			<h1 className="text-center mt-3"> Register Page </h1>
 
-			<Form>
+			<Form onSubmit={(e) => registerUser(e)}>
 			  <Form.Group className ="mb-3" controlId="userEmail">
 			    <Form.Label>Email address</Form.Label>
 
