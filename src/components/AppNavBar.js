@@ -1,19 +1,35 @@
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useState, Fragment } from 'react';
 
 export default function AppNavBar() {
+	/*
+		Syntax:
+			localStorage.getItem(propertyName)
+	*/
+	const [user, setUser] = useState(localStorage.getItem("email"));
+	// console.log(user);
+
 	return(
 		<Navbar bg="light" expand="lg">
-			<Navbar.Brand>
+			<Navbar.Brand as={Link} to="/" >
 				ARRAL
 			</Navbar.Brand>
 			<Navbar.Toggle aria-controls="basic-navbar-nav"/>
 			<Navbar.Collapse id="basic-navbar-nav">
 				<Nav className="ml-auto">
-					<Link className="nav-link"to='/'> Home </Link>
-					<Link className="nav-link"to='/Register'> Register </Link>
-					<Link className="nav-link"to='/Login'> Login </Link>
-					<Link className="nav-link"to='/Courses'> Courses </Link>
+					<Link className="nav-link" to='/'> Home </Link>
+					<Link className="nav-link" to='/Courses'> Courses </Link>
+
+					{ (user !== null) ?
+						<Nav.Link as={Link} to='/Logout'>Logout</Nav.Link>
+						:
+						<Fragment>
+							<Nav.Link as={Link} to='/Register'> Register </Nav.Link>
+							<Nav.Link as={Link} to='/Login'> Login </Nav.Link>
+						</Fragment>
+					}
+
 				</Nav>
 			</Navbar.Collapse>
 		</Navbar>

@@ -16,6 +16,12 @@ export default function Login() {
 		setEmail("");
 		setPassword("");
 
+		/*
+			Syntax:
+				localStorage.setItem("propertyName", value)
+		*/	
+		localStorage.setItem("email", email)
+		
 		Swal.fire({
 			icon: 'success',
 			title: `User ${email} has been verified. `,
