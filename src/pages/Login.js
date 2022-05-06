@@ -18,7 +18,7 @@ export default function Login() {
 
 		Swal.fire({
 			icon: 'success',
-			title: 'You are now logged in',
+			title: `User ${email} has been verified. `,
 			text: ''
 		});
 	};
