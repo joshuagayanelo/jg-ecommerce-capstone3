@@ -1,7 +1,9 @@
 import {Container, Form, Button } from 'react-bootstrap';
 import Banner from './../components/Banner';
 import Swal from 'sweetalert2'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import UserContext from '../UserContext'
+import { Navigate } from 'react-router-dom';
 
 const bannerRegiser = {
 	title: 'Sign up here',
@@ -20,12 +22,21 @@ export default function Register() {
 	// 		Swal.fire("Thank you for registering!");
 	// };
 
+	const {user, setUser} = useContext(UserContext);
+
 	const registerUser = (e) => {
 	 		e.preventDefault();
 			
 			setEmail("");
 			setPassword1("");
 			setPassword2("");
+
+
+			localStorage.setItem("email", email)
+	
+			setUser({
+				email: localStorage.getItem('email')
+			})
 
 			Swal.fire("Thank you for registering!");
 	};
@@ -50,6 +61,13 @@ export default function Register() {
 	}, [email, password1, password2])
 
 	return (
+
+		(user.email !== null) ?
+
+		<Navigate to='/Courses'/>
+
+		:
+
 		<Container>
 			<Banner bannerData = {bannerRegiser}/>
 			<h1 className="text-center mt-3"> Register Page </h1>

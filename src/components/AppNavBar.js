@@ -1,14 +1,17 @@
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useState, Fragment } from 'react';
+import { useState, Fragment, useContext } from 'react';
+import UserContext from '../UserContext';
 
 export default function AppNavBar() {
 	/*
 		Syntax:
 			localStorage.getItem(propertyName)
 	*/
-	const [user, setUser] = useState(localStorage.getItem("email"));
+	// const [user, setUser] = useState(localStorage.getItem("email"));
 	// console.log(user);
+
+	const { user } = useContext(UserContext);
 
 	return(
 		<Navbar bg="light" expand="lg">
@@ -21,7 +24,7 @@ export default function AppNavBar() {
 					<Link className="nav-link" to='/'> Home </Link>
 					<Link className="nav-link" to='/Courses'> Courses </Link>
 
-					{ (user !== null) ?
+					{ (user.email !== null) ?
 						<Nav.Link as={Link} to='/Logout'>Logout</Nav.Link>
 						:
 						<Fragment>
