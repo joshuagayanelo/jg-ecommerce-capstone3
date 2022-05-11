@@ -23,25 +23,80 @@ export default function Login() {
 	const loginUser = (e) => {
 		e.preventDefault();
 
-		setEmail("");
-		setPassword("");
+		/*
+			Syntax:
+				fetch("URL", {options})
+				.then(res => res.json)
+				.then(data => {})
+
+		*/
+
+		fetch('http://localhost:4000/api/users/login', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			}, 
+			body: JSON.stringify({
+				email: email,
+				password: password
+			})
+		})
+		.then(res => res.json())
+		.then(data => {
+			
+			// console.log(data)
+			if(typeof data.accessToken !== "undefined") {
+				localStorage.setItem('token', data.accessToken)
+				retrieveUserDetails(data.accessToken)
+
+				Swal.fire({
+					icon: 'success',
+					title: `User ${email} has been verified. `,
+					text: 'Welcome to ARRAL.'
+				});
+			} else {
+				Swal.fire({
+					icon: 'error',
+					title: `Incorrect email or password`,
+					text: 'Please check your login details and try again.'
+				});
+			}
+
+		})
+
+		// setEmail("");
+		// setPassword("");
 
 		/*
 			Syntax:
 				localStorage.setItem("propertyName", value)
 		*/	
-		localStorage.setItem("email", email)
+		// localStorage.setItem("email", email)
 		
-		setUser({
-			email: localStorage.getItem('email')
-		})
+		// setUser({
+		// 	email: localStorage.getItem('email')
+		// })
 
-		Swal.fire({
-			icon: 'success',
-			title: `User ${email} has been verified. `,
-			text: ''
-		});
+
 	};
+
+	const retrieveUserDetails = (token) => {
+		fetch('http://localhost:4000/api/users/details',{
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		})
+		.then(res => res.json())
+		.then(data => {
+
+			console.log(data)
+			setUser({
+				id: data._id,
+				isAdmin: data.isAmdin
+
+			})
+		})
+	}
 
 	useEffect(() => {
 		if(email !== "" && password !==""){
@@ -55,7 +110,7 @@ export default function Login() {
 
 	return(
 
-		(user.email !== null) ?
+		(user.id !== null) ?
 
 		<Navigate to='/Courses'/>
 

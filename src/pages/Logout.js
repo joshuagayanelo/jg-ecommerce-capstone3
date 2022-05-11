@@ -11,8 +11,8 @@ export default function logout() {
 	unsetUser()
 
 	useEffect(() => {
-		setUser({email: null});
-	})
+		setUser({id: null});
+	}, [])
 
 	return(
 

@@ -24,7 +24,7 @@ export default function AppNavBar() {
 					<Link className="nav-link" to='/'> Home </Link>
 					<Link className="nav-link" to='/Courses'> Courses </Link>
 
-					{ (user.email !== null) ?
+					{ (user.id !== null) ?
 						<Nav.Link as={Link} to='/Logout'>Logout</Nav.Link>
 						:
 						<Fragment>

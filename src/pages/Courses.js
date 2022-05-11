@@ -1,11 +1,11 @@
 //This page will be use to showcase all the available courses stored in our collection in MOngoDB.
 
 //1. Identify the needed components for this page.
-import {Fragment} from 'react'
+import {Fragment, useEffect, useState} from 'react'
 import CourseCard from '../components/CourseCard';
 import Banner from '../components/Banner';
 import { Container } from 'react-bootstrap';
-import coursesData from '../data/coursesData';
+// import coursesData from '../data/coursesData';
 
     //the comtainer component from bootstrap will be used to add margin around the components inside the page.
 //2. Create a function that will describe the anatomy of the page.
@@ -18,13 +18,30 @@ export default function Courses(){
 
     // console.log(coursesData[0])
     
-    const courses = coursesData.map(course => {
+    // const courses = coursesData.map(course => {
         
-        return(
-            <CourseCard key={course.id} courseProp={course} />
-        ) 
+    //     return(
+    //         <CourseCard key={course.id} courseProp={course} />
+    //     ) 
 
-    });
+    // });
+
+    const [courses, setCourses] = useState([])
+
+    useEffect(() => {
+        fetch('http://localhost:4000/api/courses/')
+        .then(res => res.json())
+        .then(data => {
+            
+            console.log(data)
+            setCourses(data.map(course => {
+                return(
+                     <CourseCard key={course._id} courseProp={course} />
+                    )
+            }))
+
+        })
+    }, [])
 
     return (
         <Container>

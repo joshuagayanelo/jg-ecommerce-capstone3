@@ -62,7 +62,7 @@ export default function Register() {
 
 	return (
 
-		(user.email !== null) ?
+		(user.id !== null) ?
 
 		<Navigate to='/Courses'/>
 

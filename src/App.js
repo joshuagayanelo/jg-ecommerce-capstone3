@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AppNavBar from './components/AppNavBar';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -19,7 +19,8 @@ export default function App() {
   // Initialized as an object with properties from the local storage
   // This will be used to store the user information and wil be used for validating if a user is logged in on the app or not
   const [user, setUser] = useState({
-    email: localStorage.getItem('email')
+    id: null, 
+    isAdmin: null
   })
 
   //Function for clearing the localStorage on logout.
@@ -27,6 +28,33 @@ export default function App() {
     localStorage.clear()
   }
 
+  // useEffect(() => {
+  //   console.log(user)
+  // }, [user])
+
+  useEffect(() => {
+
+    fetch('http://localhost:4000/api/users/details', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    .then(res => res.json())
+    .then(data =>{
+      if(typeof data._id !== "undefined") {
+        setUser({
+          id: data._id,
+          isAdmin: data.isAdmin
+        })
+      } else {
+        setUser({
+          id: null,
+          isAdmin: null
+        })
+      }
+    })
+
+  },[])
 
 
   return (
