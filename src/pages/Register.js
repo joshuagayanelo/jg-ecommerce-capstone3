@@ -24,6 +24,8 @@ export default function Register() {
 
 	const {user, setUser} = useContext(UserContext);
 
+	const navigate = useNavigate()
+
 	//State hooks to store the values of the input fields
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
@@ -91,9 +93,7 @@ export default function Register() {
 	 							text: "Welcome to ARRAL!"
 	 						})
 
-	 						navigate('/login')
-
-	 						
+	 						navigate("/login")
 
 	 					} else {
 	 						Swal.fire({
@@ -108,8 +108,7 @@ export default function Register() {
 	 			}
 	 		})
 	
-	};
-
+	}
 
 
 	// console.log(email);
