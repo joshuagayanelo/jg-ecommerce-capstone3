@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Courses from './pages/Courses';
+import CourseView from './pages/CourseView'
 import ErrorPage from './pages/Error';
 import Logout from './pages/Logout';
 import Footer from './components/Footer';
@@ -63,10 +64,11 @@ export default function App() {
          <AppNavBar />
          <Routes>
            <Route path='/' element={<Home />} />
-           <Route path='/Login' element={<Login />} />
-           <Route path='/Register' element={<Register />} />
-           <Route path='/Courses' element={<Courses />} />
-           <Route path='/Logout' element={<Logout />} />
+           <Route path='/login' element={<Login />} />
+           <Route path='/register' element={<Register />} />
+           <Route path='/courses' element={<Courses />} />
+           <Route path='/courses/:courseId' element={<CourseView />} />
+           <Route path='/logout' element={<Logout />} />
            <Route path='*' element={<ErrorPage />} />
          </Routes>
          <Footer />

@@ -1,9 +1,9 @@
-import {Container, Form, Button } from 'react-bootstrap';
 import Banner from './../components/Banner';
-import Swal from 'sweetalert2'
+import { Container, Form, Button } from 'react-bootstrap';
 import { useState, useEffect, useContext } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import UserContext from '../UserContext'
-import { Navigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 const bannerRegiser = {
 	title: 'Sign up here',
@@ -24,41 +24,112 @@ export default function Register() {
 
 	const {user, setUser} = useContext(UserContext);
 
-	const registerUser = (e) => {
-	 		e.preventDefault();
-			
-			setEmail("");
-			setPassword1("");
-			setPassword2("");
-
-
-			localStorage.setItem("email", email)
-	
-			setUser({
-				email: localStorage.getItem('email')
-			})
-
-			Swal.fire("Thank you for registering!");
-	};
-
-	//State hooks to store the values of the input fields,
+	//State hooks to store the values of the input fields
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
 	const[email, setEmail] = useState("");
+	const[mobileNo, setMobileNo] = useState("");
 	const[password1, setPassword1] = useState("");
 	const[password2, setPassword2] = useState("");
 	//State to determin whether the button is enabled or not.
 	const [isActive, setIsActive] = useState(false);
+
+	const registerUser = (e) => {
+	 		e.preventDefault();
+			
+	 		fetch("http://localhost:4000/api/users/checkEmail", {
+	 			method:"POST",
+	 			headers: {
+	 				'Content-Type': 'application/json'
+	 			},
+	 			body: JSON.stringify({
+	 				email:email
+	 			})
+
+	 		})
+	 		.then(res => res.json())
+	 		.then(data => {
+
+	 			console.log(data)
+
+	 			if(data === true) {
+	 				Swal.fire({
+	 					title:"Duplicate email found.",
+	 					icon: "error", 
+	 					text: "Kindly provide another email to complete the registration."
+	 				})
+	 			} else {
+
+	 				fetch("http://localhost:4000/api/users/register", {
+	 					method: "POST", 
+	 					headers: {
+	 						'Content-Type': 'application/json'
+	 					}, 
+	 					body: JSON.stringify({
+	 						firstName: firstName,
+	 						lastName: lastName,
+	 						email: email,
+	 						mobileNo: mobileNo,
+	 						password:password1
+	 					})
+	 				})
+	 				.then(res => res.json())
+	 				.then(data => {
+
+	 					if(data === true){
+
+	 						setFirstName("");
+	 						setLastName("");
+	 						setEmail("");
+	 						setMobileNo("");
+	 						setPassword1("");
+	 						setPassword2("");
+
+	 						Swal.fire({
+	 							title: "Registration successful",
+	 							icon: "success", 
+	 							text: "Welcome to ARRAL!"
+	 						})
+
+	 						navigate('/login')
+
+	 						
+
+	 					} else {
+	 						Swal.fire({
+	 							title: "Something went wrong.",
+	 							icon: "error", 
+	 							text: "Please try again."
+	 						})
+	 					}
+
+	 				})
+
+	 			}
+	 		})
+	
+	};
+
+
 
 	// console.log(email);
 	// console.log(password1);
 	// console.log(password2);
 
 	useEffect(() => {
-		if((email !== "" && password1 !== "" && password2 !== "") && (password1 === password2)){
+		if((
+			firstName 	!== "" && 
+			lastName 	!== "" && 
+			email 		!== "" &&  
+			mobileNo.length === 11 && 
+			password1 	!== "" && 
+			password2 	!== ""
+			) && (password1 === password2)){
 			setIsActive(true)
 		} else {
 			setIsActive(false)
 		}
-	}, [email, password1, password2])
+	}, [firstName, lastName, email, mobileNo, password1, password2])
 
 	return (
 
@@ -73,9 +144,32 @@ export default function Register() {
 			<h1 className="text-center mt-3"> Register Page </h1>
 
 			<Form onSubmit={(e) => registerUser(e)}>
+
+			  <Form.Group className ="mb-3" controlId="firstName">
+			    <Form.Label>First Name</Form.Label>
+			    <Form.Control 
+			    type="text" 
+			    placeholder="Enter your last name" 
+			    value ={firstName}
+			    onChange={e => {setFirstName(e.target.value)}}
+			    required
+			    />
+			  </Form.Group>
+
+
+			  <Form.Group className ="mb-3" controlId="lastName">
+			    <Form.Label>Last Name</Form.Label>
+			    <Form.Control 
+			    type="text" 
+			    placeholder="Enter your last name" 
+			    value ={lastName}
+			    onChange={e => {setLastName(e.target.value)}}
+			    required
+			    />
+			  </Form.Group>
+
 			  <Form.Group className ="mb-3" controlId="userEmail">
 			    <Form.Label>Email address</Form.Label>
-
 			    <Form.Control 
 			    type="email" 
 			    placeholder="Enter email" 
@@ -86,6 +180,19 @@ export default function Register() {
 			    <Form.Text className="text-muted">
 			      We'll never share your email with anyone else.
 			    </Form.Text>
+			  </Form.Group>
+
+
+			  <Form.Group className ="mb-3" controlId="mobileNo">
+			    <Form.Label>Mobile Number</Form.Label>
+			    <Form.Control 
+			    type="text" 
+			    placeholder="Enter your mobile number" 
+			    value ={mobileNo}
+			    onChange={e => {setMobileNo(e.target.value)}}
+			    required
+			    />
+	
 			  </Form.Group>
 
 			  <Form.Group className ="mb-3" controlId="password1">
