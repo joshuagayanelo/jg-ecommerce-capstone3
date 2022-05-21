@@ -1,7 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,800;0,900;1,300;1,400;1,600&family=Playfair+Display:ital,wght@0,800;0,900;1,500&display=swap');
+
 *{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: -0.5px;
+}
+
+.brandName {
+  font-family: 'Montserrat', sans-serif;
+  font-weight:900 ;
 }
 
 .cardHighlight {
@@ -10,17 +19,40 @@
 }
 
 .nav-bg {
-  background-color: lightblue;
+  background-color: #1e1e1e;
+  color: white;
+  font-size: .8rem;
 }
 
 .footerDescription {
   font-size: .7em;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   position: fixed;
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: lightblue;
+  background-color: #1e1e1e !important;
+  color: gray;
+  font-weight: 500;
 
 }
+
+.banner-home {
+  background-color: #1e1e1e;
+  color: white;
+  margin-top: -16px;
+  height: 400px;
+
+ 
+}
+
+.brand-name-banner {
+  font-family: 'Playfair Display', serif;
+  font-weight: 100;
+  font-size: 3.5rem;
+}
+
+ .navbar-toggler-icon {
+            color: white;
+        }

@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { useState, Fragment, useContext } from 'react';
 import UserContext from '../UserContext';
 
+import {SiBuymeacoffee} from 'react-icons/si';
+import {RiShoppingCartLine} from 'react-icons/ri';
+
 export default function AppNavBar() {
 	/*
 		Syntax:
@@ -14,27 +17,31 @@ export default function AppNavBar() {
 	const { user } = useContext(UserContext);
 
 	return(
-		<Navbar className="nav-bg" expand="lg">
-			<Navbar.Brand as={Link} to="/" >
-				ARRAL
+		<Navbar className="nav-bg" expand="lg" variant="dark">
+			<Navbar.Brand as={Link} to="/" className="brandName" >
+				<SiBuymeacoffee style={{ color: 'white' }}/> 
 			</Navbar.Brand>
 			<Navbar.Toggle aria-controls="basic-navbar-nav"/>
-			<Navbar.Collapse id="basic-navbar-nav">
-				<Nav className="ml-auto">
-					<Link className="nav-link" to='/'> Home </Link>
-					<Link className="nav-link" to='/Courses'> Courses </Link>
+			<Navbar.Collapse id="basic-navbar-nav" >
+				<Nav className="m-auto">
+					<Link className="nav-link" style={{ color: 'white' }} to='/'> HOME </Link>
+					<Link className="nav-link" style={{ color: 'white' }} to='/Courses'> PRODUCTS </Link>
 
 					{ (user.id !== null) ?
-						<Nav.Link as={Link} to='/Logout'>Logout</Nav.Link>
+						<Nav.Link as={Link} style={{ color: 'white' }} to='/Logout'>LOGOUT</Nav.Link>
 						:
 						<Fragment>
-							<Nav.Link as={Link} to='/Register'> Register </Nav.Link>
-							<Nav.Link as={Link} to='/Login'> Login </Nav.Link>
+							<Nav.Link as={Link} style={{ color: 'white' }} to='/Register'> REGISTER </Nav.Link>
+							<Nav.Link as={Link} style={{ color: 'white' }} to='/Login'> LOGIN </Nav.Link>
 						</Fragment>
 					}
 
 				</Nav>
+				<Navbar.Brand as={Link} to="/" className="brandName" >
+					<RiShoppingCartLine style={{ color: 'white' }}  /> 
+				</Navbar.Brand>
 			</Navbar.Collapse>
+
 		</Navbar>
 	)
 };

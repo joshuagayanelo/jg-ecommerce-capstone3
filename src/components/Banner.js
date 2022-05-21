@@ -1,12 +1,15 @@
-import { Col, Row } from 'react-bootstrap'; 
+import { Col, Row, Container, Fragment } from 'react-bootstrap'; 
+import '../App.css';
 
 export default function Banner({bannerData}) {
 	return(
-       <Row>
+   
+       <div className="banner-home ml-auto">
 			<Col className = "p-5 m-3">
-			   <h1 className = "text-center text-success"> {bannerData.title} </h1>
-			   <p className = "text-center my-4"> {bannerData.content} </p>
+			   <h1 className = "brand-name-banner"> {bannerData.title} </h1>
+			   <p className = "my-4"> {bannerData.content} </p>
 			</Col>          
-       </Row>
+       </div>
+      
 	);
 };

@@ -1,5 +1,6 @@
 import {  } from 'react-bootstrap';
 import react from 'react'; 
+import '../App.css';
 
 export default function App() {
   return (
