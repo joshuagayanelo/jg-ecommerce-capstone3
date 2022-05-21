@@ -119,7 +119,7 @@ export default function Login() {
 			<Banner bannerData = {bannerLogin} />
 			<h1 className="text-center mt-3">Login Page</h1>
 		
-			<Form className="mt-5" onSubmit={(e) => loginUser(event)}>
+			<Form className="mt-5" onSubmit={(e) => loginUser(e)}>
 				{/*Email address*/}
 				<Form.Group controlId="userEmail">
 					<Form.Label>Email:</Form.Label>	
