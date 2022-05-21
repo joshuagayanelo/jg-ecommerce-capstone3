@@ -1,10 +1,9 @@
-import { Container } from 'react-bootstrap';
+import {  } from 'react-bootstrap';
 import react from 'react'; 
 
 export default function App() {
   return (
-      <div className="text-center footerDes"
-        style={{ position: "fixed", left: 0, bottom: 0, right: 0,backgroundColor: "lightblue"}}>
+      <div className="text-center footerDescription">
        
         Copyright &copy; 2022 Joshua Gayanelo. For Educational Purposes Only.
       

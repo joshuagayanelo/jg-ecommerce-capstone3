@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Card, Button} from 'react-bootstrap';
+import { Card, Button, Container} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import Swal from 'sweetalert2';
 
@@ -40,18 +40,21 @@ export default function CourseCard({courseProp}) {
 	// }
 
 	// console.log(props.courseProp);
+
 	const {name, description, price, _id } = courseProp;
 
 	return (
-		<Card>
-			<Card.Body>
-				<Card.Title>{name}</Card.Title>
-				<Card.Subtitle>Description</Card.Subtitle>
-				<Card.Text>{description}</Card.Text>
-				<Card.Subtitle>Price</Card.Subtitle>
-				<Card.Text>Php: {price}</Card.Text>
-				<Button variant ="primary" as={Link} to={`/courses/${_id}`}>Details</Button>
-			</Card.Body>
-		</Card>
+		<Container className="mb-3">
+			<Card>
+				<Card.Body>
+					<Card.Title>{name}</Card.Title>
+					<Card.Subtitle>Description</Card.Subtitle>
+					<Card.Text>{description}</Card.Text>
+					<Card.Subtitle>Price</Card.Subtitle>
+					<Card.Text>Php: {price}</Card.Text>
+					<Button variant ="primary" as={Link} to={`/courses/${_id}`}>Details</Button>
+				</Card.Body>
+			</Card>			
+		</Container>
 	);
 }

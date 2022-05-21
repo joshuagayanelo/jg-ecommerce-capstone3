@@ -5,6 +5,7 @@ import {Fragment, useEffect, useState} from 'react'
 import CourseCard from '../components/CourseCard';
 import Banner from '../components/Banner';
 import { Container } from 'react-bootstrap';
+
 // import coursesData from '../data/coursesData';
 
     //the comtainer component from bootstrap will be used to add margin around the components inside the page.
@@ -44,11 +45,13 @@ export default function Courses(){
     }, [])
 
     return (
-        <Container>
-            <Banner bannerData={bannerCourse} />
-            <h1 className='text-center mt-3 mb-3'> Courses Catalog Page </h1>
-            {courses}
-        </Container>
+        <div className="pb-5">
+            <Container>
+                <Banner bannerData={bannerCourse} />
+                <h1 className='text-center mt-3 mb-3'> Courses Catalog Page </h1>
+                {courses}  
+            </Container>
+        </div>
     );
 };
 

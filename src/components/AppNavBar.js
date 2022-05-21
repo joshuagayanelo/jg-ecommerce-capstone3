@@ -14,7 +14,7 @@ export default function AppNavBar() {
 	const { user } = useContext(UserContext);
 
 	return(
-		<Navbar bg="light" expand="lg">
+		<Navbar className="nav-bg" expand="lg">
 			<Navbar.Brand as={Link} to="/" >
 				ARRAL
 			</Navbar.Brand>

@@ -52,7 +52,7 @@ export default function Login() {
 				Swal.fire({
 					icon: 'success',
 					title: `User ${email} has been verified. `,
-					text: 'Welcome to ARRAL.'
+					text: 'Welcome to ARRAL!'
 				});
 			} else {
 				Swal.fire({

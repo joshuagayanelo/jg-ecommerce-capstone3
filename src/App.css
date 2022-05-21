@@ -9,3 +9,18 @@
   background-color: lightblue !important;
 }
 
+.nav-bg {
+  background-color: lightblue;
+}
+
+.footerDescription {
+  font-size: .7em;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: lightblue;
+
+}
