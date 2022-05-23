@@ -52,7 +52,7 @@ export default function ProductsCard({courseProp}) {
 					<Card.Text>{description}</Card.Text>
 					{/*<Card.Subtitle>Price</Card.Subtitle>*/}
 					<Card.Text>P {price}</Card.Text>
-					<Button variant ="primary" as={Link} to={`/courses/${_id}`}>Details</Button>
+					<Button variant ="primary" as={Link} to={`/products/${_id}`}>Details</Button>
 				</Card.Body>
 			</Card>			
 		</Container>

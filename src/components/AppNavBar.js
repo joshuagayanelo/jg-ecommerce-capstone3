@@ -25,14 +25,14 @@ export default function AppNavBar() {
 			<Navbar.Collapse id="basic-navbar-nav" >
 				<Nav className="m-auto">
 					<Link className="nav-link" style={{ color: 'white' }} to='/'> Home </Link>
-					<Link className="nav-link" style={{ color: 'white' }} to='/Products'> Products </Link>
+					<Link className="nav-link" style={{ color: 'white' }} to='/products'> Products </Link>
 
 					{ (user.id !== null) ?
-						<Nav.Link as={Link} style={{ color: 'white' }} to='/Logout'>Logout</Nav.Link>
+						<Nav.Link as={Link} style={{ color: 'white' }} to='/logout'>Logout</Nav.Link>
 						:
 						<Fragment>
-							<Nav.Link as={Link} style={{ color: 'white' }} to='/Register'> Register </Nav.Link>
-							<Nav.Link as={Link} style={{ color: 'white' }} to='/Login'> Login </Nav.Link>
+							<Nav.Link as={Link} style={{ color: 'white' }} to='/register'> Register </Nav.Link>
+							<Nav.Link as={Link} style={{ color: 'white' }} to='/login'> Login </Nav.Link>
 						</Fragment>
 					}
 

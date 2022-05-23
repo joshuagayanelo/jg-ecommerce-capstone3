@@ -1,5 +1,5 @@
 import {useState, useEffect, useContext} from 'react';
-import {Container, Row, Column, Card, Button, Col} from 'react-bootstrap';
+import {Container, Row, Column, Card, Button, Col, Form} from 'react-bootstrap';
 import {useParams, useNavigate} from 'react-router-dom';
 import UserContext from '../UserContext';
 import Swal from 'sweetalert2';
@@ -12,33 +12,54 @@ export default function CourseView () {
 	const navigate = useNavigate();
 
 	//The userParams hook allows us to retrieve the courseId passed via the URL
-	const {courseId} = useParams();
+	const {productId} = useParams();
 
 	const [name, setName] = useState("");
 	const [description, setDescription] = useState("");
 	const [price, setPrice] = useState(0);
+	const [quantity, setQuantity] = useState(0);
 
-	const enroll = (productId) => {
+	const [countQty, setCountQty] = useState(0)
+	 
+		const handleClick1 = () => {
+		  setCountQty(countQty + 1)
+		}
+		 
+		const handleClick2 = () => {
+		  if(countQty >= 1) {
+			setCountQty(countQty - 1)
+		  }
+		}
 
-		fetch("http://localhost:4000/api/users/enroll", {
+
+
+
+	const addToCart = (productId) => {
+
+		fetch("http://localhost:4000/api/cart/add-to-cart/", {
 			method: "POST",
 			headers: {
 				'Content-Type': 'application/json',
 				Authorization: `Bearer ${localStorage.getItem('token')}`
 			},
 			body: JSON.stringify({
-				productId: productId
+				userId:user.id,
+				productId: productId,
+				qty:countQty,
+				price:price
 			})
 		})
+
+
 		.then(res => res.json())
 		.then(data => {
 			console.log(data)
 
 			if(data === true) {
 				Swal.fire({
-					title:"Successfully enrolled.",
+					title:"Added to cart.",
 					icon:"success",
-					text:"You have successfully enrolled for this course."
+					text:"You can check your cart to review your items."
 				})
 
 				navigate('/products')
@@ -53,15 +74,21 @@ export default function CourseView () {
 		})
 	};
 
+	console.log(user.id)
+	console.log(productId)
+	console.log(countQty)
+	console.log(price)
+	
 	useEffect(() => {
-		// console.log(courseId)
+		// console.log(productId)
 		fetch(`http://localhost:4000/api/products/${productId}`)
 		.then(res => res.json())
 		.then(data => {
-			// console.log(data);
+			//console.log(data);
 			setName(data.productName)
 			setDescription(data.description)
 			setPrice(data.price)
+			setQuantity(data.quantity)
 		})
 	},[productId])
 
@@ -76,13 +103,27 @@ export default function CourseView () {
 							<Card.Subtitle>Description: </Card.Subtitle>
 							<Card.Text>{description}</Card.Text>
 							<Card.Subtitle>Price:</Card.Subtitle>
-							<Card.Text>{price}</Card.Text>
+							<Card.Text>Php {price}</Card.Text>
+							<Card.Subtitle>Available:</Card.Subtitle>
+							<Card.Text>{quantity}</Card.Text>
+
 							{/*<Card.Subtitle>Class Schedule:</Card.Subtitle>*/}
 							{/*<Card.Text>5:30PM - 9:30PM</Card.Text>*/}
 							
+
+							<Form>
+							  <Form.Group className="mb-3" controlId="formBasicEmail">
+							    {/*<Form.Label>Enter Qty</Form.Label>*/}
+							    <Card.Text>Quantity: {countQty}</Card.Text>
+							    <Button variant="success" onClick={() => handleClick2()}>-</Button>
+							    <Button variant="primary" onClick={() => handleClick1()}>+</Button>
+							  </Form.Group>
+						
+							</Form>
+							
 							{
 								user.id !== null ?
-									<Button variant="primary" onClick={() => enroll(productId)}>Add to cart</Button>
+									<Button variant="primary" onClick={() => addToCart(productId)}>Add to cart</Button>
 								:
 									<Link className="btn btn-danger" to="/login">Add to cart</Link>
 							}
