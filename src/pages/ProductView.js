@@ -18,7 +18,7 @@ export default function CourseView () {
 	const [description, setDescription] = useState("");
 	const [price, setPrice] = useState(0);
 
-	const enroll = (courseId) => {
+	const enroll = (productId) => {
 
 		fetch("http://localhost:4000/api/users/enroll", {
 			method: "POST",
@@ -27,7 +27,7 @@ export default function CourseView () {
 				Authorization: `Bearer ${localStorage.getItem('token')}`
 			},
 			body: JSON.stringify({
-				courseId: courseId
+				productId: productId
 			})
 		})
 		.then(res => res.json())
@@ -41,7 +41,7 @@ export default function CourseView () {
 					text:"You have successfully enrolled for this course."
 				})
 
-				navigate('/courses')
+				navigate('/products')
 
 			} else {
 				Swal.fire({
@@ -55,15 +55,15 @@ export default function CourseView () {
 
 	useEffect(() => {
 		// console.log(courseId)
-		fetch(`http://localhost:4000/api/courses/${courseId}`)
+		fetch(`http://localhost:4000/api/products/${productId}`)
 		.then(res => res.json())
 		.then(data => {
 			// console.log(data);
-			setName(data.name)
+			setName(data.productName)
 			setDescription(data.description)
 			setPrice(data.price)
 		})
-	},[courseId])
+	},[productId])
 
 	return(
 
@@ -71,20 +71,20 @@ export default function CourseView () {
 			<Row>
 				<Col lg={{span:6, offset:3}}>
 					<Card>
-						<Card.Body className="text-center">
+						<Card.Body className="">
 							<Card.Title>{name}</Card.Title>
 							<Card.Subtitle>Description: </Card.Subtitle>
 							<Card.Text>{description}</Card.Text>
 							<Card.Subtitle>Price:</Card.Subtitle>
 							<Card.Text>{price}</Card.Text>
-							<Card.Subtitle>Class Schedule:</Card.Subtitle>
-							<Card.Text>5:30PM - 9:30PM</Card.Text>
+							{/*<Card.Subtitle>Class Schedule:</Card.Subtitle>*/}
+							{/*<Card.Text>5:30PM - 9:30PM</Card.Text>*/}
 							
 							{
 								user.id !== null ?
-									<Button variant="primary" onClick={() => enroll(courseId)}>Enroll</Button>
+									<Button variant="primary" onClick={() => enroll(productId)}>Add to cart</Button>
 								:
-									<Link className="btn btn-danger" to="/login">Login to enroll</Link>
+									<Link className="btn btn-danger" to="/login">Add to cart</Link>
 							}
 
 						</Card.Body>

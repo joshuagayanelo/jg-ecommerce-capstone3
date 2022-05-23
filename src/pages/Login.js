@@ -89,7 +89,7 @@ export default function Login() {
 
 		(user.id !== null) ?
 
-		<Navigate to='/Courses'/>
+		<Navigate to='/Products'/>
 
 		:
 

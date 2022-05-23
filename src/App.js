@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Products from './pages/Products';
-import CourseView from './pages/CourseView'
+import ProductView from './pages/ProductView'
 import ErrorPage from './pages/Error';
 import Logout from './pages/Logout';
 import Footer from './components/Footer';
@@ -67,7 +67,7 @@ export default function App() {
            <Route path='/login' element={<Login />} />
            <Route path='/register' element={<Register />} />
            <Route path='/products' element={<Products />} />
-           <Route path='/courses/:courseId' element={<CourseView />} />
+           <Route path='/products/:productId' element={<ProductView />} />
            <Route path='/logout' element={<Logout />} />
            <Route path='*' element={<ErrorPage />} />
          </Routes>

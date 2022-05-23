@@ -3,7 +3,7 @@ import { Card, Button, Container} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-export default function CourseCard({courseProp}) {
+export default function ProductsCard({courseProp}) {
 
 
 	// Use the state hook for this component to be able to store its 
@@ -50,8 +50,8 @@ export default function CourseCard({courseProp}) {
 					<Card.Title>{productName}</Card.Title>
 					<Card.Subtitle>Description: </Card.Subtitle>
 					<Card.Text>{description}</Card.Text>
-					<Card.Subtitle>Price</Card.Subtitle>
-					<Card.Text>Php: {price}</Card.Text>
+					{/*<Card.Subtitle>Price</Card.Subtitle>*/}
+					<Card.Text>P {price}</Card.Text>
 					<Button variant ="primary" as={Link} to={`/courses/${_id}`}>Details</Button>
 				</Card.Body>
 			</Card>			

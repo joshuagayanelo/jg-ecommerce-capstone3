@@ -2,12 +2,12 @@
 
 //1. Identify the needed components for this page.
 import {Fragment, useEffect, useState} from 'react'
-import CourseCard from '../components/CourseCard';
+import ProductCard from '../components/ProductCard';
 import Banner from '../components/Banner';
 import { Container } from 'react-bootstrap';
 
-import coursesData from '../data/coursesData';
-import productsData from '../data/productsData';
+// import coursesData from '../data/coursesData';
+// import productsData from '../data/productsData';
 
     //the comtainer component from bootstrap will be used to add margin around the components inside the page.
 //2. Create a function that will describe the anatomy of the page.
@@ -16,41 +16,41 @@ import productsData from '../data/productsData';
 //     content: 'Mugs is life.'
 // }
 
-export default function Courses(){
+export default function Products(){
 
-    console.log(productsData[0])
+    // console.log(productsData[0])
     
-    const courses = productsData.map(course => {
+    // const courses = productsData.map(course => {
         
-        return(
-            <CourseCard key={course.id} courseProp={course} />
-        ) 
+    //     return(
+    //         <CourseCard key={course.id} courseProp={course} />
+    //     ) 
 
-    });
+    // });
 
-    // const [courses, setCourses] = useState([])
+    const [products, setProducts] = useState([])
 
-    // useEffect(() => {
-    //     fetch('http://localhost:4000/api/courses/')
-    //     .then(res => res.json())
-    //     .then(data => {
+    useEffect(() => {
+        fetch('http://localhost:4000/api/products')
+        .then(res => res.json())
+        .then(data => {
             
-    //         console.log(data)
-    //         setCourses(data.map(course => {
-    //             return(
-    //                  <CourseCard key={course._id} courseProp={course} />
-    //                 )
-    //         }))
+            console.log(data)
+            setProducts(data.map(products => {
+                return(
+                     <ProductCard key={products._id} courseProp={products} />
+                    )
+            }))
 
-    //     })
-    // }, [])
+        })
+    }, [])
 
     return (
         <div className="pb-5">
             <Container>
                 <h1 className='text-center mt-3 mb-3'> Products</h1>
                 {/*<Banner bannerData={bannerCourse} />*/}
-                {courses}  
+                {products}  
             </Container>
         </div>
     );
