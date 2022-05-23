@@ -41,14 +41,14 @@ export default function CourseCard({courseProp}) {
 
 	// console.log(props.courseProp);
 
-	const {name, description, price, _id } = courseProp;
+	const {productName, description, price, _id } = courseProp;
 
 	return (
 		<Container className="mb-3">
 			<Card>
 				<Card.Body>
-					<Card.Title>{name}</Card.Title>
-					<Card.Subtitle>Description</Card.Subtitle>
+					<Card.Title>{productName}</Card.Title>
+					<Card.Subtitle>Description: </Card.Subtitle>
 					<Card.Text>{description}</Card.Text>
 					<Card.Subtitle>Price</Card.Subtitle>
 					<Card.Text>Php: {price}</Card.Text>

@@ -4,7 +4,7 @@ import AppNavBar from './components/AppNavBar';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Courses from './pages/Courses';
+import Products from './pages/Products';
 import CourseView from './pages/CourseView'
 import ErrorPage from './pages/Error';
 import Logout from './pages/Logout';
@@ -66,7 +66,7 @@ export default function App() {
            <Route path='/' element={<Home />} />
            <Route path='/login' element={<Login />} />
            <Route path='/register' element={<Register />} />
-           <Route path='/courses' element={<Courses />} />
+           <Route path='/products' element={<Products />} />
            <Route path='/courses/:courseId' element={<CourseView />} />
            <Route path='/logout' element={<Logout />} />
            <Route path='*' element={<ErrorPage />} />

@@ -73,7 +73,7 @@ export default function CourseView () {
 					<Card>
 						<Card.Body className="text-center">
 							<Card.Title>{name}</Card.Title>
-							<Card.Subtitle>Description:</Card.Subtitle>
+							<Card.Subtitle>Description: </Card.Subtitle>
 							<Card.Text>{description}</Card.Text>
 							<Card.Subtitle>Price:</Card.Subtitle>
 							<Card.Text>{price}</Card.Text>
@@ -84,7 +84,7 @@ export default function CourseView () {
 								user.id !== null ?
 									<Button variant="primary" onClick={() => enroll(courseId)}>Enroll</Button>
 								:
-									<Link className="btn btn-danger" to="/login">Log in to enroll</Link>
+									<Link className="btn btn-danger" to="/login">Login to enroll</Link>
 							}
 
 						</Card.Body>

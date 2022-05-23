@@ -24,15 +24,15 @@ export default function AppNavBar() {
 			<Navbar.Toggle aria-controls="basic-navbar-nav"/>
 			<Navbar.Collapse id="basic-navbar-nav" >
 				<Nav className="m-auto">
-					<Link className="nav-link" style={{ color: 'white' }} to='/'> HOME </Link>
-					<Link className="nav-link" style={{ color: 'white' }} to='/Courses'> PRODUCTS </Link>
+					<Link className="nav-link" style={{ color: 'white' }} to='/'> Home </Link>
+					<Link className="nav-link" style={{ color: 'white' }} to='/Products'> Products </Link>
 
 					{ (user.id !== null) ?
-						<Nav.Link as={Link} style={{ color: 'white' }} to='/Logout'>LOGOUT</Nav.Link>
+						<Nav.Link as={Link} style={{ color: 'white' }} to='/Logout'>Logout</Nav.Link>
 						:
 						<Fragment>
-							<Nav.Link as={Link} style={{ color: 'white' }} to='/Register'> REGISTER </Nav.Link>
-							<Nav.Link as={Link} style={{ color: 'white' }} to='/Login'> LOGIN </Nav.Link>
+							<Nav.Link as={Link} style={{ color: 'white' }} to='/Register'> Register </Nav.Link>
+							<Nav.Link as={Link} style={{ color: 'white' }} to='/Login'> Login </Nav.Link>
 						</Fragment>
 					}
 

@@ -23,14 +23,6 @@ export default function Login() {
 	const loginUser = (e) => {
 		e.preventDefault();
 
-		/*
-			Syntax:
-				fetch("URL", {options})
-				.then(res => res.json)
-				.then(data => {})
-
-		*/
-
 		fetch('http://localhost:4000/api/users/login', {
 			method: 'POST',
 			headers: {
@@ -44,7 +36,7 @@ export default function Login() {
 		.then(res => res.json())
 		.then(data => {
 			
-			// console.log(data)
+			console.log(data)
 			if(typeof data.accessToken !== "undefined") {
 				localStorage.setItem('token', data.accessToken)
 				retrieveUserDetails(data.accessToken)
@@ -52,7 +44,7 @@ export default function Login() {
 				Swal.fire({
 					icon: 'success',
 					title: `User ${email} has been verified. `,
-					text: 'Welcome to ARRAL!'
+					text: 'Welcome to Bentta.'
 				});
 			} else {
 				Swal.fire({
@@ -63,20 +55,6 @@ export default function Login() {
 			}
 
 		})
-
-		// setEmail("");
-		// setPassword("");
-
-		/*
-			Syntax:
-				localStorage.setItem("propertyName", value)
-		*/	
-		// localStorage.setItem("email", email)
-		
-		// setUser({
-		// 	email: localStorage.getItem('email')
-		// })
-
 
 	};
 
@@ -116,8 +94,8 @@ export default function Login() {
 		:
 
 		<Container>
-			<Banner bannerData = {bannerLogin} />
-			<h1 className="text-center mt-3">Login Page</h1>
+			
+			<h1 className="text-center mt-3">Login to Bentta</h1>
 		
 			<Form className="mt-5" onSubmit={(e) => loginUser(e)}>
 				{/*Email address*/}

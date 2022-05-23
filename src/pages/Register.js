@@ -39,28 +39,28 @@ export default function Register() {
 	const registerUser = (e) => {
 	 		e.preventDefault();
 			
-	 		fetch("http://localhost:4000/api/users/checkEmail", {
-	 			method:"POST",
-	 			headers: {
-	 				'Content-Type': 'application/json'
-	 			},
-	 			body: JSON.stringify({
-	 				email:email
-	 			})
+	 		// fetch("http://localhost:4000/api/users/checkEmail", {
+	 		// 	method:"POST",
+	 		// 	headers: {
+	 		// 		'Content-Type': 'application/json'
+	 		// 	},
+	 		// 	body: JSON.stringify({
+	 		// 		email:email
+	 		// 	})
 
-	 		})
-	 		.then(res => res.json())
-	 		.then(data => {
+	 		// })
+	 		// .then(res => res.json())
+	 		// .then(data => {
 
-	 			console.log(data)
+	 		// 	console.log(data)
 
-	 			if(data === true) {
-	 				Swal.fire({
-	 					title:"Duplicate email found.",
-	 					icon: "error", 
-	 					text: "Kindly provide another email to complete the registration."
-	 				})
-	 			} else {
+	 		// 	if(data === true) {
+	 		// 		Swal.fire({
+	 		// 			title:"Duplicate email found.",
+	 		// 			icon: "error", 
+	 		// 			text: "Kindly provide another email to complete the registration."
+	 		// 		})
+	 		// 	} else {
 
 	 				fetch("http://localhost:4000/api/users/register", {
 	 					method: "POST", 
@@ -97,16 +97,16 @@ export default function Register() {
 
 	 					} else {
 	 						Swal.fire({
-	 							title: "Something went wrong.",
+	 							title: "Duplicate email found.",
 	 							icon: "error", 
-	 							text: "Please try again."
+	 							text: "Kindly provide another email to complete the registration."
 	 						})
 	 					}
 
 	 				})
 
-	 			}
-	 		})
+	 			//}
+	 		//})
 	
 	}
 
@@ -139,8 +139,8 @@ export default function Register() {
 		:
 
 		<Container>
-			<Banner bannerData = {bannerRegiser}/>
-			<h1 className="text-center mt-3"> Register Page </h1>
+			{/*<Banner bannerData = {bannerRegiser}/>*/}
+			<h1 className="text-center mt-3"> Register Here </h1>
 
 			<Form onSubmit={(e) => registerUser(e)}>
 

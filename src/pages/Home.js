@@ -11,7 +11,8 @@ export default function Home() {
 	return(
 		<Container>
 			<Banner bannerData = {bannerHome} />
-			{/*<Highlights/>*/}
+			<Highlights/>
+			
 		</Container>
 	);
 };
