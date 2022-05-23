@@ -34,9 +34,6 @@ export default function CourseView () {
 		  }
 		}
 
-
-
-
 	const addToCart = (productId) => {
 
 		fetch("http://localhost:4000/api/cart/add-to-cart/", {
@@ -87,21 +84,21 @@ export default function CourseView () {
 	// console.log(description)
 	// console.log(productSku)
 	//console.log(productNameA)
-
-	const checkQty = 
 	
 	useEffect(() => {
 		// console.log(productId)
 		fetch(`http://localhost:4000/api/products/${productId}`)
 		.then(res => res.json())
 		.then(data => {
-			console.log(data);
+			//console.log(data);
 			setProductNameA(data.productName)
 			setProductSku(data.productSku)
 			setDescription(data.description)
 			setPrice(data.price)
 			setQuantity(data.quantity)
 			setProductIdA(data._id)
+
+			//console.log(data.quantity)
 
 
 		})
@@ -137,11 +134,14 @@ export default function CourseView () {
 							</Form>
 							
 							{
-								user.id !== null ?
-									
+								user.id !== null && quantity != 0 ?
 									<Button variant="primary" onClick={() => addToCart(productId)}>Add to cart</Button>
+
+								: quantity == 0 ?
+									<Button variant="primary" disabled onClick={() => addToCart(productId)}>No stocks availabe</Button>
+
 								:
-									<Link className="btn btn-danger" to="/login">Add to cart</Link>
+									<Link className="btn btn-danger" to="/login">Please login to add to cart</Link>
 							}
 
 						</Card.Body>

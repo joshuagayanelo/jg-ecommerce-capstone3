@@ -3,7 +3,7 @@
 //1. Identify the needed components for this page.
 import {Fragment, useEffect, useState, useContext} from 'react'
 import CartCard from '../components/CartCard';
-import { Container } from 'react-bootstrap';
+import { Container, Button } from 'react-bootstrap';
 import UserContext from '../UserContext';
 
 
@@ -43,13 +43,13 @@ export default function Cart (){
         .then(res => res.json())
         .then(data => {
             
-            console.log(data)
+            //console.log(data)
             setCart(data.map(cart => {
                 return(
                      <CartCard key={data._id} cartProp={cart} />
                     )
             }))
-            console.log(data._id)
+            
 
         })
     }, [])
@@ -59,7 +59,8 @@ export default function Cart (){
             <Container>
                 <h1 className=' mt-3 mb-3'>My Cart</h1>
                 {/*<Banner bannerData={bannerCourse} />*/}
-                {cart}  
+                {cart} 
+                
             </Container>
         </div>
     );

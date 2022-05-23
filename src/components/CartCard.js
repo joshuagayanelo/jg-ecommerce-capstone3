@@ -5,8 +5,12 @@ import Swal from 'sweetalert2';
 
 export default function CartCard({cartProp}) {
 
-
 	const { _id, user, productId, productName, productSku, qty, description, price, subTotal } = cartProp;
+
+	//const [removeItem, setRemoveItem] = useState("");
+
+
+	//console.log(cartProp)
 
 	return (
 		<Container className="mb-3">
@@ -16,8 +20,10 @@ export default function CartCard({cartProp}) {
 					<Card.Subtitle>Description: </Card.Subtitle>
 					<Card.Text>{description}</Card.Text>
 					<Card.Text>SKU: {productSku}</Card.Text>
-					<Card.Text>{qty}</Card.Text>
+					<Card.Text>Quantity: {qty}</Card.Text>
 					<Card.Text>Sub Total: Php {subTotal}</Card.Text>
+					<Button variant="danger" >Remove from cart</Button> 
+
 			{/*		<Button variant ="primary" as={Link} to={`/products/${_id}`}>Details</Button>*/}
 				</Card.Body>
 			</Card>			

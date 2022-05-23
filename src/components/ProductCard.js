@@ -6,41 +6,6 @@ import Swal from 'sweetalert2';
 export default function ProductsCard({productProp}) {
 
 
-	// Use the state hook for this component to be able to store its 
-	/*
-		Syntax:
-			const [getter, setter] = useSate(initialGetterValue)
-	*/
-
-	// const [count, setCount] = useState(0)
-	// const [seats, setSeats] = useState(30)
-
-	// function enroll() {
-
-	// 		setCount(count + 1)
-	// 		setSeats(seats - 1)
-	// 		console.log('Enrollees: ' + count)
-	// 	}
-
-	// 	useEffect(() => {
-	// 		if(seats === 0){
-	// 			alert('No more seats available!');
-	// 		}
-	// 		// console.log('ayun')
-	// 	},[seats]);
-
-	// 	if(seatCount  == 0){
-	// 		Swal.fire('Sorry, there are no more seats available.')
-
-	// 	} else {
-
-	// 		setCount(count + 1)
-	// 		setSeatCount(seatCount - 1)
-	// 	}
-	// }
-
-	// console.log(props.courseProp);
-
 	const {productName, description, price, _id } = productProp;
 
 	return (

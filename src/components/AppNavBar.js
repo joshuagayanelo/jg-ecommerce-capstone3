@@ -5,6 +5,7 @@ import UserContext from '../UserContext';
 
 import {SiBuymeacoffee} from 'react-icons/si';
 import {RiShoppingCartLine} from 'react-icons/ri';
+import {RiListSettingsLine} from 'react-icons/ri';
 
 export default function AppNavBar() {
 	/*
@@ -27,7 +28,8 @@ export default function AppNavBar() {
 					<Link className="nav-link" style={{ color: 'white' }} to='/'> Home </Link>
 					<Link className="nav-link" style={{ color: 'white' }} to='/products'> Products </Link>
 
-					{ (user.id !== null) ?
+					{ 
+						(user.id !== null) ?
 						<Nav.Link as={Link} style={{ color: 'white' }} to='/logout'>Logout</Nav.Link>
 						:
 						<Fragment>
@@ -36,10 +38,25 @@ export default function AppNavBar() {
 						</Fragment>
 					}
 
+
 				</Nav>
-				<Navbar.Brand as={Link} to="/cart" className="brandName" >
-					<RiShoppingCartLine style={{ color: 'white' }}  /> 
-				</Navbar.Brand>
+				{ 
+					
+					(user.isAdmin === true)? 
+						<Navbar.Brand as={Link} to="/admin-dashboard" className="brandName" >
+							<RiListSettingsLine  style={{ color: 'white' }}  />	
+						</Navbar.Brand>
+
+					: (user.id !== null && user.isAdmin !== true ) ?
+						<Navbar.Brand as={Link} to="/cart" className="brandName" >
+							<RiShoppingCartLine style={{ color: 'white' }}  />
+						</Navbar.Brand>
+					:
+						<Navbar.Brand className="brandName" >
+							<RiShoppingCartLine style={{ color: 'transparent' }}  />
+						</Navbar.Brand>
+				}
+				
 			</Navbar.Collapse>
 
 		</Navbar>

@@ -5,6 +5,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Products from './pages/Products';
+import Admin from './pages/Admin';
+import AdminLogin from './pages/AdminLogin';
 import Cart from './pages/Cart';
 import ProductView from './pages/ProductView'
 import ErrorPage from './pages/Error';
@@ -71,6 +73,8 @@ export default function App() {
            <Route path='/products/:productId' element={<ProductView />} />
            <Route path='/cart' element={<Cart />} />
            <Route path='/logout' element={<Logout />} />
+           <Route path='/admin-dashboard' element={<Admin />} />
+           <Route path='/admin-login' element={<AdminLogin />} />
            <Route path='*' element={<ErrorPage />} />
          </Routes>
          <Footer />

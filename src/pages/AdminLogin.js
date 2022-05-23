@@ -2,12 +2,8 @@ import { Container, Form, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2'; 
 import { useState, useEffect, useContext } from 'react';
 import UserContext from '../UserContext'
-import { Navigate, Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-const bannerLogin = {
-	title: 'Sign in to your account here',
-	content: 'View your profile when you sign in.'
-}
 
 export default function Login() {
 
@@ -58,7 +54,7 @@ export default function Login() {
 	};
 
 	const retrieveUserDetails = (token) => {
-		fetch('http://localhost:4000/api/users/details',{
+		fetch('http://localhost:4000/api/users/admin',{
 			headers: {
 				Authorization: `Bearer ${token}`
 			}
@@ -86,15 +82,15 @@ export default function Login() {
 
 	return(
 
-		(user.id !== null) ?
+		(user.isAdmin === true) ?
 
-		<Navigate to='/Products'/>
+		<Navigate to='/admin-dashboard'/>
 
 		:
 
 		<Container>
 			
-			<h1 className="text-center mt-3">Login to Bentta</h1>
+			<h1 className="text-center mt-3">Admin Login Page</h1>
 		
 			<Form className="mt-5" onSubmit={(e) => loginUser(e)}>
 				{/*Email address*/}
@@ -124,7 +120,7 @@ export default function Login() {
 
 				{
 					isActive ?
-					<Button className="btn" variant="primary" type="submit">
+					<Button className="btn" variant="primary" type="submit" onClick={() => window.location.reload(false)}>
 						Login
 					</Button>
 					:
@@ -132,8 +128,6 @@ export default function Login() {
 						Login
 					</Button>
 				}
-
-				<Form.Text className="mt-3" as={Link} to="/admin-login">Are you an admin?</Form.Text>
 
 			</Form>
 

@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap';
 
 const bannerHome = {
 	title: 'Bentta',
-	content: 'Enroll this summer to get amazing discounts!'
+	content: 'Discover what you have been searching for.'
 }
 
 export default function Home() {
