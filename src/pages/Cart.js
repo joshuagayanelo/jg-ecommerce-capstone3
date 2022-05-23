@@ -1,9 +1,11 @@
 //This page will be use to showcase all the available courses stored in our collection in MOngoDB.
 
 //1. Identify the needed components for this page.
-import {Fragment, useEffect, useState} from 'react'
-import ProductCard from '../components/ProductCard';
+import {Fragment, useEffect, useState, useContext} from 'react'
+import CartCard from '../components/CartCard';
 import { Container } from 'react-bootstrap';
+import UserContext from '../UserContext';
+
 
 // import coursesData from '../data/coursesData';
 // import productsData from '../data/productsData';
@@ -15,7 +17,7 @@ import { Container } from 'react-bootstrap';
 //     content: 'Mugs is life.'
 // }
 
-export default function Products(){
+export default function Cart (){
 
     // console.log(productsData[0])
     
@@ -27,19 +29,27 @@ export default function Products(){
 
     // });
 
-    const [products, setProducts] = useState([])
+    const [cart, setCart] = useState([])
+  
+    const {user} = useContext(UserContext);
 
     useEffect(() => {
-        fetch('http://localhost:4000/api/products')
+        fetch('http://localhost:4000/api/cart/my-cart/', {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
         .then(res => res.json())
         .then(data => {
             
             console.log(data)
-            setProducts(data.map(products => {
+            setCart(data.map(cart => {
                 return(
-                     <ProductCard key={products._id} productProp={products} />
+                     <CartCard key={data._id} cartProp={cart} />
                     )
             }))
+            console.log(data._id)
 
         })
     }, [])
@@ -47,9 +57,9 @@ export default function Products(){
     return (
         <div className="pb-5">
             <Container>
-                <h1 className='text-center mt-3 mb-3'> Products</h1>
+                <h1 className=' mt-3 mb-3'>My Cart</h1>
                 {/*<Banner bannerData={bannerCourse} />*/}
-                {products}  
+                {cart}  
             </Container>
         </div>
     );

@@ -1,4 +1,3 @@
-import Banner from './../components/Banner';
 import { Container, Form, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2'; 
 import { useState, useEffect, useContext } from 'react';

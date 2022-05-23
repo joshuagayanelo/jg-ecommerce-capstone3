@@ -15,6 +15,9 @@ export default function CourseView () {
 	const {productId} = useParams();
 
 	const [name, setName] = useState("");
+	const [productIdA, setProductIdA] = useState("");
+	const [productNameA, setProductNameA] = useState("");
+	const [productSku, setProductSku] = useState("");
 	const [description, setDescription] = useState("");
 	const [price, setPrice] = useState(0);
 	const [quantity, setQuantity] = useState(0);
@@ -43,8 +46,11 @@ export default function CourseView () {
 				Authorization: `Bearer ${localStorage.getItem('token')}`
 			},
 			body: JSON.stringify({
-				userId:user.id,
-				productId: productId,
+				user:user.id,
+				productId: productIdA,
+				productName: productNameA,
+				productSku: productSku,
+				description:description,
 				qty:countQty,
 				price:price
 			})
@@ -53,7 +59,7 @@ export default function CourseView () {
 
 		.then(res => res.json())
 		.then(data => {
-			console.log(data)
+			//console.log(data)
 
 			if(data === true) {
 				Swal.fire({
@@ -74,21 +80,30 @@ export default function CourseView () {
 		})
 	};
 
-	console.log(user.id)
-	console.log(productId)
-	console.log(countQty)
-	console.log(price)
+	// console.log(user.id)
+	// console.log(productIdA)
+	//console.log(countQty)
+	// console.log(price)
+	// console.log(description)
+	// console.log(productSku)
+	//console.log(productNameA)
+
+	const checkQty = 
 	
 	useEffect(() => {
 		// console.log(productId)
 		fetch(`http://localhost:4000/api/products/${productId}`)
 		.then(res => res.json())
 		.then(data => {
-			//console.log(data);
-			setName(data.productName)
+			console.log(data);
+			setProductNameA(data.productName)
+			setProductSku(data.productSku)
 			setDescription(data.description)
 			setPrice(data.price)
 			setQuantity(data.quantity)
+			setProductIdA(data._id)
+
+
 		})
 	},[productId])
 
@@ -123,6 +138,7 @@ export default function CourseView () {
 							
 							{
 								user.id !== null ?
+									
 									<Button variant="primary" onClick={() => addToCart(productId)}>Add to cart</Button>
 								:
 									<Link className="btn btn-danger" to="/login">Add to cart</Link>

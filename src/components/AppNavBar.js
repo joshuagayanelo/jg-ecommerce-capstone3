@@ -1,4 +1,4 @@
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useState, Fragment, useContext } from 'react';
 import UserContext from '../UserContext';
@@ -37,7 +37,7 @@ export default function AppNavBar() {
 					}
 
 				</Nav>
-				<Navbar.Brand as={Link} to="/" className="brandName" >
+				<Navbar.Brand as={Link} to="/cart" className="brandName" >
 					<RiShoppingCartLine style={{ color: 'white' }}  /> 
 				</Navbar.Brand>
 			</Navbar.Collapse>
