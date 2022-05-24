@@ -29,38 +29,15 @@ export default function Register() {
 	//State hooks to store the values of the input fields
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
-	const[email, setEmail] = useState("");
-	const[mobileNo, setMobileNo] = useState("");
-	const[password1, setPassword1] = useState("");
-	const[password2, setPassword2] = useState("");
+	const [email, setEmail] = useState("");
+	const [mobileNo, setMobileNo] = useState("");
+	const [password1, setPassword1] = useState("");
+	const [password2, setPassword2] = useState("");
 	//State to determin whether the button is enabled or not.
 	const [isActive, setIsActive] = useState(false);
 
 	const registerUser = (e) => {
 	 		e.preventDefault();
-			
-	 		// fetch("http://localhost:4000/api/users/checkEmail", {
-	 		// 	method:"POST",
-	 		// 	headers: {
-	 		// 		'Content-Type': 'application/json'
-	 		// 	},
-	 		// 	body: JSON.stringify({
-	 		// 		email:email
-	 		// 	})
-
-	 		// })
-	 		// .then(res => res.json())
-	 		// .then(data => {
-
-	 		// 	console.log(data)
-
-	 		// 	if(data === true) {
-	 		// 		Swal.fire({
-	 		// 			title:"Duplicate email found.",
-	 		// 			icon: "error", 
-	 		// 			text: "Kindly provide another email to complete the registration."
-	 		// 		})
-	 		// 	} else {
 
 	 				fetch("http://localhost:4000/api/users/register", {
 	 					method: "POST", 
@@ -105,9 +82,6 @@ export default function Register() {
 
 	 				})
 
-	 			//}
-	 		//})
-	
 	}
 
 

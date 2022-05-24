@@ -6,10 +6,7 @@ import Swal from 'sweetalert2';
 export default function CartCard({cartProp}) {
 
 	const { _id, user, productId, productName, productSku, qty, description, price, subTotal } = cartProp;
-
 	//const [removeItem, setRemoveItem] = useState("");
-
-
 	//console.log(cartProp)
 
 	return (

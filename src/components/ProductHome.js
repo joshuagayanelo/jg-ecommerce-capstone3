@@ -1,13 +1,13 @@
 import { Col, Row, Container, Fragment } from 'react-bootstrap'; 
 import '../App.css';
 
-export default function Banner({bannerData}) {
+export default function ProductHome({productHomeData}) {
 	return(
    
        <div className="ml-auto">
 			<Col className = "p-5 m-3">
-			   <p className = "banner-title-content"> {bannerData.content} </p>
-			   <h1 className = "banner-title"> {bannerData.title} </h1>
+			   <h1 className="productHome-title"> {productHomeData.title} </h1>
+			   <p className = "productHome-title-content"> {productHomeData.content} </p>
 			</Col>          
        </div>
       

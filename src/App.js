@@ -15,6 +15,13 @@ import Footer from './components/Footer';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { UserProvider } from './UserContext';
 
+import * as React from 'react'
+
+// 1. import `ChakraProvider` component
+import { ChakraProvider } from '@chakra-ui/react' 
+
+
+
 export default function App() {
 
   //React Contect is nothing but a global stat to the app. It is a way to make a particular data available to all the compoonents no matter how they are nested.
@@ -61,7 +68,8 @@ export default function App() {
   },[])
 
 
-  return (
+return (
+<ChakraProvider>
     <UserProvider value = {{user, setUser, unsetUser}}>
       <Router>
          <AppNavBar />
@@ -80,5 +88,6 @@ export default function App() {
          <Footer />
       </Router>
     </UserProvider>
+</ChakraProvider>
     );
 };

@@ -6,11 +6,16 @@
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
   letter-spacing: -0.5px;
+  /*background-color: #f5f5f5;*/
 }
 
 .brandName {
   font-family: 'Montserrat', sans-serif;
   font-weight:900 ;
+}
+
+.logoName {
+  font-family: 'Playfair Display', serif!important;
 }
 
 .cardHighlight {
@@ -25,34 +30,106 @@
 }
 
 .footerDescription {
-  font-size: .7em;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  font-size: .8rem;
+  padding-top: 0px;
+  padding-bottom: 0px;
   position: fixed;
   left: 0;
   bottom: 0;
   right: 0;
   background-color: #1e1e1e !important;
-  color: gray;
+  color: white;
   font-weight: 500;
 
 }
 
-.banner-home {
+.home-section {
   background-color: #1e1e1e;
   color: white;
   margin-top: -16px;
-  height: 400px;
-
- 
+  height: 550px;
 }
 
-.brand-name-banner {
+.home-section2 {
+  /*background-color: #d69e2e;*/
+  background-color: white;
+  color: white;
+  margin-top: 228px;
+  height: 550px;
+}
+
+.home-section3 {
+  /*background-color: #d69e2e;*/
+  background-color: white;
+  color: white;
+  margin-top: -16px;
+  height: 1000px;
+}
+
+.banner-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 100;
+  font-size: 7.4rem;
+  margin-top: 0px
+}
+
+.banner-title-content {
+  font-size: 1rem !important;
+  color:  white;
+  margin-top: 60px;
+}
+
+.category-title {
   font-family: 'Playfair Display', serif;
   font-weight: 100;
   font-size: 3.5rem;
+  color: #1e1e1e;
+  margin-top: 100px;
+  margin-right: 50px;
 }
 
- .navbar-toggler-icon {
-            color: white;
-        }
+.category-title2{
+  font-family: 'Playfair Display', serif;
+  font-weight: 100;
+  font-size: 3.5rem;
+  color: #1e1e1e;
+  margin-top: -10px;
+  margin-right: 50px;
+}
+
+.category-title-content1 {
+  font-size: 1rem !important;
+  color:  gray;
+  margin-top: 20px;
+  margin-right: 50px;
+}
+
+.category-title-content2 {
+  font-size: 1rem !important;
+  color:  gray;
+  margin-right: 50px;
+}
+
+.productHome-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 100;
+  font-size: 3.5rem;
+  color: #1e1e1e;
+  margin-top: 100px;
+}
+
+.productHome-title-content {
+  font-size: 1rem !important;
+  color:  gray;
+  margin-top: 20px;
+}
+
+
+/*Burger Menu*/
+.css-bokek7 {
+  color: white!important;
+}
+
+.css-1239oul {
+  color: white!important;
+}
