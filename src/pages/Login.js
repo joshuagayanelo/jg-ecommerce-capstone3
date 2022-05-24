@@ -1,4 +1,4 @@
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import Swal from 'sweetalert2'; 
 import { useState, useEffect, useContext } from 'react';
 import UserContext from '../UserContext'
@@ -91,52 +91,66 @@ export default function Login() {
 		<Navigate to='/Products'/>
 
 		:
-
-		<Container>
-			
+		<div>
 			<h1 className="text-center mt-3">Login to Bentta</h1>
+			<Container>
+				<Row>
+				  	<Col className="bg-success">
+				  		<div >
+				  			Section
+				  		</div>
+				  	</Col>
+				 	 <Col className="">
+				 	 	<Form className="mt-5" onSubmit={(e) => loginUser(e)}>
+				 	 		{/*Email address*/}
+				 	 		<Form.Group controlId="userEmail">
+				 	 			<Form.Label>Email:</Form.Label>	
+				 	 			<Form.Control 
+				 	 				type="email"
+				 	 				placeholder="Enter your email address here"
+				 	 				required
+				 	 				value={email}
+				 	 				// pattern=
+				 	 				onChange={e => {setEmail(e.target.value)}}
+
+				 	 			/>	
+				 	 		</Form.Group>
+				 	 		{/*Password*/}
+				 	 		<Form.Group controlId="password">	
+				 	 			<Form.Label>Password:</Form.Label>	
+				 	 			<Form.Control 
+				 	 				type="password"
+				 	 				placeholder="Please enter your password here"
+				 	 				required
+				 	 				value={password}
+				 	 				onChange={e => {setPassword(e.target.value)}}
+				 	 			/>
+				 	 		</Form.Group>
+
+				 	 		{
+				 	 			isActive ?
+				 	 			<Button className="btn" variant="primary" type="submit">
+				 	 				Login
+				 	 			</Button>
+				 	 			:
+				 	 			<Button className="btn" variant="secondary" disabled>
+				 	 				Login
+				 	 			</Button>
+				 	 		}
+
+				 	 		<Form.Text className="mt-3" as={Link} to="/admin-login">Are you an admin?</Form.Text>
+
+				 	 	</Form>
+				 	 </Col>
+				</Row>
+
+	
+
+			</Container>
 		
-			<Form className="mt-5" onSubmit={(e) => loginUser(e)}>
-				{/*Email address*/}
-				<Form.Group controlId="userEmail">
-					<Form.Label>Email:</Form.Label>	
-					<Form.Control 
-						type="email"
-						placeholder="Enter your email address here"
-						required
-						value={email}
-						// pattern=
-						onChange={e => {setEmail(e.target.value)}}
 
-					/>	
-				</Form.Group>
-				{/*Password*/}
-				<Form.Group controlId="password">	
-					<Form.Label>Password:</Form.Label>	
-					<Form.Control 
-						type="password"
-						placeholder="Please enter your password here"
-						required
-						value={password}
-						onChange={e => {setPassword(e.target.value)}}
-					/>
-				</Form.Group>
+		</div>
 
-				{
-					isActive ?
-					<Button className="btn" variant="primary" type="submit">
-						Login
-					</Button>
-					:
-					<Button className="btn" variant="secondary" disabled>
-						Login
-					</Button>
-				}
-
-				<Form.Text className="mt-3" as={Link} to="/admin-login">Are you an admin?</Form.Text>
-
-			</Form>
-
-		</Container>		
+		
 	);
 };	
