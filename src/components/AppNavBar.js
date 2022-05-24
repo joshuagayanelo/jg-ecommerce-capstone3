@@ -34,6 +34,9 @@ import {
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
+  const toRegister = (e) => {
+  	window.location.href="/register"
+  }
 
   return (
     <Box>
@@ -86,7 +89,7 @@ export default function WithSubnavigation() {
             fontWeight={400}
             variant={'link'}
             color={'white'}
-            href={'#'}
+            href={'/login'}
             _hover={{
               color: 'gray.200',
             }}>
@@ -98,7 +101,8 @@ export default function WithSubnavigation() {
             fontWeight={600}
             color={'#1e1e1e'}
             bg={'yellow.500'}
-            href={'#'}
+            // href={'/register'}
+            onClick={() => toRegister()}
             _hover={{
               bg: 'yellow.600',
             }}>
@@ -298,15 +302,15 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Home',
-    href: '#',
+    href: '/',
   },
   {
     label: 'Products',
-    href: '#',
+    href: '/products',
   },,
   {
     label: 'Cart',
-    href: '#',
+    href: '/cart',
   },
 ];
 
