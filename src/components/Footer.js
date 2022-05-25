@@ -81,7 +81,7 @@ export default function SmallWithLogoLeft() {
     <Box
       bg={useColorModeValue('white.50', 'white.900')}
       color={useColorModeValue('white.700', 'white.200')}
-      className="footerDescription">
+      className="footer">
       <Container
         as={Stack}
         maxW={'6xl'}

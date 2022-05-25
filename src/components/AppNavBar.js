@@ -39,20 +39,29 @@
 	} from '@chakra-ui/icons';
 
 	export default function WithSubnavigation() {
+	 
+	  const { user } = useContext(UserContext);
+
 	  const { isOpen, onToggle } = useDisclosure();
 
 	  const toRegister = (e) => {
 	  	window.location.href="/register"
 	  }
 
-	  const { user } = useContext(UserContext);
+	  const toLogin = (e) => {	  
+	  	window.location.href="/login"
+	  }
+
+	  const toLogout = (e) => {
+	  	window.location.href="/logout"
+	  } 
 
 	  return (
-	    <Box>
+	    <Box >
 	      <Flex
 	        bg={useColorModeValue('#1e1e1e', 'gray.100')}
 	        color={useColorModeValue('white.600', 'white')}
-	        minH={'60px'}
+	        minH={'70px'}
 	        py={{ base: 2 }}
 	        px={{ base: 4 }}
 	        borderBottom={1}
@@ -94,79 +103,89 @@
 	          direction={'row'}
 	          spacing={6}>
 
-	        	{    
-	        		(user.id !== null) ?	
-			          <Button
-			            as={'a'}
-			            fontSize={'sm'}
-			            fontWeight={600}
-			            variant={'link'}
-			            color={'white'}
-			            href={'/logout'}
-			            _hover={{
-			              color: 'gray.200',
-			            }}>
-			            Sign Out
-			          </Button>
 
-			        :
+	        	{
+	        		(user.id !== null) ?
 
-			        <Stack direction="horizontal" gap={3}>
+		        	<Fragment>
+			        	<Menu>
+			        	  <MenuButton
+			        	    className="avatar"
+			        	    as={Button}
+			        	    rounded={'full'}
+			        	    variant={'link'}
+			        	    cursor={'pointer'}
+			        	    minW={0}>
+			        	    <Avatar
+			        	      size={'sm'}
+			        	      src={'./image/avatar.jpg'}
+			        	    />
+			        	  </MenuButton>
+			        	  <MenuList className="avatarMenuList">
+			        	    <MenuItem>Profile</MenuItem>
+			        	    <MenuItem>Preferences</MenuItem>
+			        	    {
+			        	    	(user.isAdmin === true) ?
+			        	    	<MenuItem>Admin Dashboard</MenuItem>
+
+			        	    	: false
+
+			        	    }
+			        	    <MenuDivider />
+			        	    <MenuItem
+			        	    onClick={() => toLogout()}
+			        	    >
+			        	    Sign Out</MenuItem>
+			        	  </MenuList>
+			        	</Menu>
+		        	</Fragment>
+
+			        : false
+
+			    }
+
+
+			    {
+			    	(user.id === null) ?
+			        <Stack direction="horizontal" gap={4}>
 			          <Button
-			            as={'a'}
+			          	//display={{ base: 'none', md: 'inline-flex' }}
+			            //as={'Link'}			            
+			            //borderRadius='15px'
 			            fontSize={'sm'}
 			            fontWeight={400}
 			            variant={'link'}
 			            color={'white'}
-			            href={'/login'}
+			            onClick={() => toLogin()}
 			            _hover={{
-			              color: 'gray.200',
+			              color: '#ECD444',
 			            }}>
 			            Sign In
 			          </Button>
 
 			          <Button
-			            display={{ base: 'none', md: 'inline-flex' }}
+			            //display={{ base: 'none', md: 'inline-flex' }}
 			            fontSize={'sm'}
-			            fontWeight={800}
-			            color={'#1e1e1e'}
-			            bg={'#ECD444'}
+			            fontWeight={400}
+			            color={'white'}
+			            borderRadius='20px'
+			            bg={''}
+			            variant={'outline'}
 			            // href={'/register'}
 			            onClick={() => toRegister()}
 			            _hover={{
-			              bg: '#78BC62',
+			              bg: '#ECD444',
+			              color:'black',
+			              colorScheme:'black'
 			            }}>
 			            Sign Up
 			          </Button>
 			         </Stack>
-			         
-	        	}
-	        	
-	        	<Box>
-		        	<Menu>
-		        	  <MenuButton
-		        	    //className="avatar"
-		        	    as={Button}
-		        	    rounded={'full'}
-		        	    variant={'link'}
-		        	    cursor={'pointer'}
-		        	    minW={0}>
-		        	    <Avatar
-		        	      size={'sm'}
-		        	      src={
-		        	        './image/avatar.jpg'
-		        	      }
-		        	    />
-		        	  </MenuButton>
-		        	  <MenuList>
-		        	    <MenuItem>Profile</MenuItem>
-		        	    <MenuItem>Preferences</MenuItem>
-		        	    <MenuDivider />
-		        	    <MenuItem>Logout</MenuItem>
-		        	  </MenuList>
-		        	</Menu>
-	        	</Box>
 
+			         : false
+			    }
+			         
+		        	
 	        	
 	        </Stack>
 
@@ -180,6 +199,7 @@
 	  );
 	}
 
+
 	const DesktopNav = () => {
 	  const linkColor = useColorModeValue('white', 'gray.200');
 	  const linkHoverColor = useColorModeValue('gray.200', 'white');
@@ -192,6 +212,7 @@
 	          <Popover trigger={'hover'} placement={'bottom-start'}>
 	            <PopoverTrigger>
 	              <Link
+
 	                p={2}
 	                href={navItem.href ?? '#'}
 	                fontSize={'sm'}
@@ -199,7 +220,7 @@
 	                color={linkColor}
 	                _hover={{
 	                  textDecoration: 'none',
-	                  color: 'gray'
+	                  color: '#ECD444'
 	                }}>
 	                {navItem.label}
 	              </Link>
@@ -226,6 +247,7 @@
 	    </Stack>
 	  );
 	};
+
 
 	const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 	  return (
@@ -261,6 +283,7 @@
 	  );
 	};
 
+
 	const MobileNav = () => {
 	  return (
 	    <Stack
@@ -274,12 +297,14 @@
 	  );
 	};
 
+
 	const MobileNavItem = ({ label, children, href }: NavItem) => {
 	  const { isOpen, onToggle } = useDisclosure();
 
 	  return (
 	    <Stack spacing={4} onClick={children && onToggle}>
 	      <Flex
+	      	className="avatarMenuList"
 	        py={2}
 	        as={Link}
 	        href={href ?? '#'}
@@ -289,7 +314,7 @@
 	          textDecoration: 'none',
 	        }}>
 	        <Text
-	          fontWeight={600}
+	          fontWeight={400}
 	          color={useColorModeValue('#1e1e1e', 'gray.200')}>
 	          {label}
 	        </Text>
@@ -306,11 +331,12 @@
 
 	      <Collapse in={isOpen} animateOpacity style={{ marginTop: '0!important' }}>
 	        <Stack
-	          mt={2}
+	          className="avatarMenuList"
+	          mt={1}
 	          pl={4}
 	          borderLeft={1}
 	          borderStyle={'solid'}
-	          borderColor={useColorModeValue('gray.200', 'gray.700')}
+	          borderColor={useColorModeValue('#1e1e1e', 'gray.700')}
 	          align={'start'}>
 	          {children &&
 	            children.map((child) => (
@@ -341,27 +367,27 @@
 	        href: '#',
 	      },
 	      {
-	        label: 'New & Noteworthy',
+	        label: "What's next",
 	        subLabel: 'Up-and-coming Designs',
 	        href: '#',
 	      },
 	    ],
 	  },
-	  {
-	    label: 'Work with us',
-	    children: [
-	      {
-	        label: 'Job Board',
-	        subLabel: 'Find your dream design job',
-	        href: '#',
-	      },
-	      {
-	        label: 'Freelance Projects',
-	        subLabel: 'An exclusive list for contract work',
-	        href: '#',
-	      },
-	    ],
-	  },
+	  // {
+	  //   label: 'Work with us',
+	  //   children: [
+	  //     {
+	  //       label: 'Job Board',
+	  //       subLabel: 'Find your dream design job',
+	  //       href: '#',
+	  //     },
+	  //     {
+	  //       label: 'Freelance Projects',
+	  //       subLabel: 'An exclusive list for contract work',
+	  //       href: '#',
+	  //     },
+	  //   ],
+	  // },
 	  {
 	    label: 'Home',
 	    href: '/',

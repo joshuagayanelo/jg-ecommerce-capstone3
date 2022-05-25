@@ -43,7 +43,7 @@ export default function Cart (){
         .then(res => res.json())
         .then(data => {
             
-            //console.log(data)
+            console.log(data)
             setCart(data.map(cart => {
                 return(
                      <CartCard key={data._id} cartProp={cart} />
