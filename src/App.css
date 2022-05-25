@@ -6,16 +6,26 @@
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
   letter-spacing: -0.1px;
+  overflow-wrap: normal;
   /*background-color: #f5f5f5;*/
 }
 
-.brandName {
+.navName {
   font-family: 'Montserrat', sans-serif;
-  font-weight:900 ;
+  font-weight:500 !important ;
+  font-size: .8rem;
+}
+
+.navName-signUp {
+  font-family: 'Montserrat', sans-serif;
+  font-weight:500 !important ;
+  font-size: .8rem;
 }
 
 .logoName {
   font-family: 'Playfair Display', serif!important;
+  font-size: 1rem;
+  margin-bottom: 3px;
 }
 
 .cardHighlight {
@@ -40,6 +50,7 @@
   background-color: #1e1e1e !important;
   color: white;
   font-weight: 500;
+  max-width: 100%;
 
 }
 
@@ -85,7 +96,6 @@
   font-size: 3.5rem;
   color: #1e1e1e;
   margin-top: 100px;
-  margin-right: 50px;
 }
 
 .category-title2{
@@ -94,20 +104,17 @@
   font-size: 3.5rem;
   color: #1e1e1e;
   margin-top: -10px;
-  margin-right: 50px;
 }
 
 .category-title-content1 {
   font-size: 1rem !important;
   color:  gray;
   margin-top: 20px;
-  margin-right: 50px;
 }
 
 .category-title-content2 {
   font-size: 1rem !important;
   color:  gray;
-  margin-right: 50px;
 }
 
 .productHome-title {
@@ -132,4 +139,13 @@
 
 .css-1239oul {
   color: white!important;
+}
+
+.css-1ahmivy {
+  color: white;
+  
+}
+
+.avatar{
+  margin-top: 4px !important;
 }

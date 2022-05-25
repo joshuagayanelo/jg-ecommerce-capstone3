@@ -5,10 +5,10 @@ export default function Banner({bannerData}) {
 	return(
    
        <div className="ml-auto">
-			<Col className = "p-5 m-3">
+			<div className = "p-5 m-3">
 			   <p className = "banner-title-content"> {bannerData.content} </p>
 			   <h1 className = "banner-title"> {bannerData.title} </h1>
-			</Col>          
+			</div>          
        </div>
       
 	);

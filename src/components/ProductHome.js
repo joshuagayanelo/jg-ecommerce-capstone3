@@ -5,10 +5,10 @@ export default function ProductHome({productHomeData}) {
 	return(
    
        <div className="ml-auto">
-			<Col className = "p-5 m-3">
+			<div className = "p-5 m-3">
 			   <h1 className="productHome-title"> {productHomeData.title} </h1>
 			   <p className = "productHome-title-content"> {productHomeData.content} </p>
-			</Col>          
+			</div>          
        </div>
       
 	);

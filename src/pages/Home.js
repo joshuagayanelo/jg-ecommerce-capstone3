@@ -24,9 +24,9 @@ const productHomeA = {
 export default function Home() {
 	return(
 		<div className="home-section">
-			<Container>
+			<div>
 				<Banner bannerData = {bannerHome} />
-			</Container>
+			</div>
 
 			<div className="home-section2 text-right">
 				<Category categoryData = {categoryHome} />

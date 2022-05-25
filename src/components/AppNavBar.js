@@ -1,4 +1,4 @@
-	//import { Navbar, Nav, Form } from 'react-bootstrap';
+""	//import { Navbar, Nav, Form } from 'react-bootstrap';
 	//import { Link } from 'react-router-dom';
 	import { useState, Fragment, useContext } from 'react';
 	import UserContext from '../UserContext';
@@ -7,11 +7,11 @@
 	import {RiShoppingCartLine} from 'react-icons/ri';
 	import {RiListSettingsLine} from 'react-icons/ri';
 
-	//const { user } = useContext(UserContext);
-
 	import {
 	  Box,
 	  Flex,
+	  Avatar,
+	  HStack,
 	  Text,
 	  IconButton,
 	  Button,
@@ -25,6 +25,11 @@
 	  useColorModeValue,
 	  useBreakpointValue,
 	  useDisclosure,
+	  Menu,
+	  MenuButton,
+	  MenuList,
+	  MenuItem,
+	  MenuDivider
 	} from '@chakra-ui/react';
 	import {
 	  HamburgerIcon,
@@ -68,6 +73,7 @@
 	            aria-label={'Toggle Navigation'}
 	          />
 	        </Flex>
+
 	        <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
 	          <Text
 	            textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
@@ -136,7 +142,34 @@
 			         
 	        	}
 	        	
+	        	<Box>
+		        	<Menu>
+		        	  <MenuButton
+		        	    //className="avatar"
+		        	    as={Button}
+		        	    rounded={'full'}
+		        	    variant={'link'}
+		        	    cursor={'pointer'}
+		        	    minW={0}>
+		        	    <Avatar
+		        	      size={'sm'}
+		        	      src={
+		        	        './image/avatar.jpg'
+		        	      }
+		        	    />
+		        	  </MenuButton>
+		        	  <MenuList>
+		        	    <MenuItem>Profile</MenuItem>
+		        	    <MenuItem>Preferences</MenuItem>
+		        	    <MenuDivider />
+		        	    <MenuItem>Logout</MenuItem>
+		        	  </MenuList>
+		        	</Menu>
+	        	</Box>
+
+	        	
 	        </Stack>
+
 
 	      </Flex>
 
