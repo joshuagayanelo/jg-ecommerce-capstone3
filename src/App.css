@@ -153,3 +153,13 @@
   font-weight:500 !important ;
   font-size: .8rem;
 }
+
+.loader {
+  display: flex;
+  justify-content: center;
+  padding-top: 20%;
+/*  background: black;
+  opacity: 50%;*/
+  height: 100%;
+
+}
