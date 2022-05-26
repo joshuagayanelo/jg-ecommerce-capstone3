@@ -24,7 +24,7 @@ export default function CartCard({cartProp}) {
 
 
 
-	const removeItem = (e) => {
+	const removeItem = () => {
 		//e.preventDefault();
 
 		fetch(`http://localhost:4000/api/cart/remove-item/${_id}`,{
@@ -44,7 +44,7 @@ export default function CartCard({cartProp}) {
 					// text:"You can check your cart to review your items."
 				})
 
-				window.location.reload(false);
+				window.setTimeout(() => {location.reload()},1000)
 				
 			} else {
 				Swal.fire({
@@ -56,12 +56,11 @@ export default function CartCard({cartProp}) {
 		})
 	};
 
-
 	const removeAndClose = () => {
-		
-		removeItem(_id);
+		removeItem();
 		onClose();
 	}
+	
 
 	return (
 		<Container className="mb-3">
@@ -77,7 +76,7 @@ export default function CartCard({cartProp}) {
 						onClick={(e) => removeItem(_id)}
 					>Remove from cart</Button>*/}
 
-					<Button colorScheme='red' onClick={onOpen}>
+					<Button colorScheme='red' variant="danger" onClick={onOpen}>
 					  Remove item
 					</Button>
 
@@ -88,8 +87,8 @@ export default function CartCard({cartProp}) {
 					>
 					  <AlertDialogOverlay>
 					    <AlertDialogContent>
-					      <AlertDialogHeader fontSize='lg' fontWeight='bold'>
-					        Renmove item from cart
+					      <AlertDialogHeader fontSize='lg' fontWeight=''>
+					        Remove item from cart
 					      </AlertDialogHeader>
 
 					      <AlertDialogBody>
@@ -97,13 +96,17 @@ export default function CartCard({cartProp}) {
 					      </AlertDialogBody>
 
 					      <AlertDialogFooter>
-					        <Button ref={cancelRef} onClick={onClose}>
+					        <Button 
+					        	ref={cancelRef} 
+					        	onClick={onClose}
+					        	>
 					          Cancel
 					        </Button>
 					        <Button 
-					        	colorScheme='red' 
 					       		//onClick={onClose} 
 					       		//onClick={(e) => {removeItem(id)}
+
+					        	variant="danger" 
 					       		onClick={() => removeAndClose()}
 					       		ml={3}
 					       		>

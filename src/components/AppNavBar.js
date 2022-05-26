@@ -56,6 +56,11 @@
 	  	window.location.href="/logout"
 	  } 
 
+
+	  const toAdminDashboard = (e) => {
+	  	window.location.href="/admin-dashboard"
+	  } 
+
 	  return (
 	    <Box >
 	      <Flex
@@ -126,7 +131,9 @@
 			        	    <MenuItem>Preferences</MenuItem>
 			        	    {
 			        	    	(user.isAdmin === true) ?
-			        	    	<MenuItem>Admin Dashboard</MenuItem>
+			        	    	<MenuItem
+			        	    		onClick={() => toAdminDashboard()}>
+			        	    	Admin Dashboard</MenuItem>
 
 			        	    	: false
 

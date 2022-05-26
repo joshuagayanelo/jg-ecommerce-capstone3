@@ -86,7 +86,11 @@ export default function Login() {
 
 	return(
 
-		(user.id !== null) ?
+		(user.isAdmin === true) ?
+
+		<Navigate to='/admin-dashboard'/>
+
+		: (user.isAdmin == false) ?
 
 		<Navigate to='/Products'/>
 
@@ -139,7 +143,7 @@ export default function Login() {
 				 	 			</Button>
 				 	 		}
 
-				 	 		<Form.Text className="mt-3" as={Link} to="/admin-login">Are you an admin?</Form.Text>
+				 	 		{/*<Form.Text className="mt-3" as={Link} to="/admin-login">Are you an admin?</Form.Text>*/}
 
 				 	 	</Form>
 				 	 </Col>

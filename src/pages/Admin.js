@@ -5,6 +5,8 @@ import {Fragment, useEffect, useState} from 'react'
 import AdminCard from '../components/AdminCard';
 import { Container, Row, Button, Modal, Form } from 'react-bootstrap';
 import Swal from 'sweetalert2';
+import { Navigate, useNavigate } from 'react-router-dom';
+//import UserContext from '../UserContext'
 
 // import coursesData from '../data/coursesData';
 // import productsData from '../data/productsData';
@@ -15,64 +17,74 @@ import Swal from 'sweetalert2';
 
 export default function Products(){
 
+   //const {user, setUser} = useContext(UserContext);
+
+   //const navigate = useNavigate()
+
     const [products, setProducts] = useState([])
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    // const [productName, setProductName] = userState("")
-    // const [productSku, setProductSku] = userState("")
-    // const [description, setDescription] = userState("")
-    // const [price, setPrice] = userState(0)
-    // const [quantity, setQuantity] = userState(0)
+    const [productName, setProductName] = useState("");
+    const [productSku, setProductSku] = useState("");
+    const [description, setDescription] = useState("");
+    const [price, setPrice] = useState("");
+    const [quantity, setQuantity] = useState("");
+
+    const [isActive, setIsActive] = useState(false);
 
         
-    // const addProduct = (e) => {
+    const addProduct = (e) => {
         
-    //     e.preventDefault();
-    //     fetch('http://localhost:4000/api/products/new', {
-    //         method:"POST", 
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }, 
-    //         body: JSON. stringify({
-    //             productName: productName, 
-    //             productSku: productSku, 
-    //             description: description, 
-    //             price: price, 
-    //             quantity: quantity, 
-    //         })
-    //     })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         if(data === true){
+        e.preventDefault();
 
-    //             setProductName("");
-    //             setProductSku("");
-    //             setDescription("");
-    //             setPrice("");
-    //             setQuantity("");
+        fetch('http://localhost:4000/api/products/new', {
+            method:"POST", 
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }, 
+            body: JSON. stringify({
+                productName: productName, 
+                productSku: productSku, 
+                description: description, 
+                price: price, 
+                quantity: quantity, 
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            //console.log(data)
+            if(data === true){
 
-
-    //             Swal.fire({
-    //                 title: "Successfully added",
-    //                 icon: "success", 
-    //                 text: "The product has been successfully added in the database."
-    //             })
-
-    //         } else {
-    //             Swal.fire({
-    //                 title: "Something went wrong.",
-    //                 icon: "error", 
-    //                 text: "Please try adding a product again."
-    //             })
-    //         }
-    //     })
-
-    // }
+                setProductName("");
+                setProductSku("");
+                setDescription("");
+                setPrice("");
+                setQuantity("");
 
 
+                Swal.fire({
+                    title: "Successfully added",
+                    icon: "success", 
+                    text: "You have successfully added a product."
+                
+                })
+
+                window.setTimeout(() => {location.reload()},1000)
+
+            } else {
+                Swal.fire({
+                    title: "Something went wrong.",
+                    icon: "error", 
+                    text: "Please try again."
+                })
+            }
+        })
+
+    }
 
     useEffect(() => {
     	fetch('http://localhost:4000/api/products/inventory', {
@@ -84,7 +96,7 @@ export default function Products(){
         .then(res => res.json())
         .then(data => {
             
-            console.log(data)
+            //console.log(data)
             setProducts(data.map(products => {
                 return(
                      <AdminCard key={products._id} productProp={products} />
@@ -94,6 +106,20 @@ export default function Products(){
         })
     }, [])
 
+
+    useEffect(() => {
+      if((
+         productName   !== "" && 
+         productSku    !== "" && 
+         description       !== "" &&   
+         price   !== "" && 
+         quantity   !== ""
+         )){
+         setIsActive(true)
+      } else {
+         setIsActive(false)
+      }
+    }, [productName, productSku, description, price, quantity])
 
     return (
         <div className="pb-5">
@@ -105,72 +131,109 @@ export default function Products(){
 
                     {/*ADD PRODUCT MODAL*/}
                     <Modal show={show} onHide={handleClose}>
+
+                        <Form onSubmit={(e) => addProduct(e)}>
+
                             <Modal.Header closeButton>
                               <Modal.Title>Add new product</Modal.Title>
                             </Modal.Header>
-                            <Modal.Body>
-                              <Form>
 
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                            <Modal.Body>
+                              <Form >
+
+                                <Form.Group className="mb-3" controlId="productName">
                                   <Form.Label>Product Name</Form.Label>
                                   <Form.Control
-                                    type="email"
+                                    type="text"
                                     placeholder="Enter product name"
                                     autoFocus
+                                    value={productName}
+                                    onChange={e => {setProductName(e.target.value)}}
                                   />
                                 </Form.Group>
 
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Group className="mb-3" controlId="productSku">
                                   <Form.Label>SKU Name</Form.Label>
                                   <Form.Control
-                                    type="email"
+                                    type="text"
                                     placeholder="Enter product SKU"
                                     autoFocus
+                                    value={productSku}
+                                    onChange={e => {setProductSku(e.target.value)}}
                                   />
                                 </Form.Group>
          
+                                <Form.Group
+                                  className="mb-3"
+                                  controlId="description">
+                                  <Form.Label>Description</Form.Label>
+                                  <Form.Control 
+                                  as="textarea"
+                                  type="text" 
+                                  rows={3} 
+                                  value={description}
+                                  onChange={e => {setDescription(e.target.value)}}
+                                  />
+                                </Form.Group>      
 
-                             <Form.Group
-                               className="mb-3"
-                               controlId="exampleForm.ControlTextarea1"
-                             >
-                               <Form.Label>Description</Form.Label>
-                               <Form.Control as="textarea" rows={3} />
-                             </Form.Group>
-         
-
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Group className="mb-3" controlId="price">
                                   <Form.Label>Price</Form.Label>
                                   <Form.Control
-                                    type="email"
+                                    type="number"
                                     placeholder="Enter product price"
                                     autoFocus
+                                    value={price}
+                                    onChange={e => {setPrice(e.target.value)}}
                                   />
                                 </Form.Group>
-         
 
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Group className="mb-3" controlId="quantity">
                                   <Form.Label>Quantity</Form.Label>
                                   <Form.Control
-                                    type="email"
+                                    type="number"
                                     placeholder="Enter product quantity"
                                     autoFocus
+                                    value={quantity}
+                                    onChange={e => {setQuantity(e.target.value)}}
                                   />
                                 </Form.Group>
          
                               </Form>
 
                             </Modal.Body>
+
                             <Modal.Footer>
                               <Button variant="secondary" onClick={handleClose}>
                                 Cancel
                               </Button>
-                              <Button variant="primary" onClick={handleClose}>
-                                Add Product
-                              </Button>
+                              {
+                                 isActive ?  
+                                 <Button 
+                                 variant="primary" 
+                                 type="submit" 
+                                 id="submitBtn"                              
+                                  onClick={handleClose} 
+
+                                 >
+                                   Add Product
+                                 </Button>
+                                 : 
+                                 <Button 
+                                 variant="primary" 
+                                 type="submit" 
+                                 id="submitBtn"
+                                 disabled
+                                  onClick={handleClose} 
+                                 >
+                                   Add Product
+                                 </Button>
+                              }
+
                             </Modal.Footer>
-                          </Modal>
+
+                          </Form>
 	               
+                        </Modal>
              	 </Container>
                 {products}  
 

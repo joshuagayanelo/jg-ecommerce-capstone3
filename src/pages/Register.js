@@ -37,6 +37,7 @@ export default function Register() {
 	const [isActive, setIsActive] = useState(false);
 
 	const registerUser = (e) => {
+		
 	 		e.preventDefault();
 
 	 				fetch("http://localhost:4000/api/users/register", {
