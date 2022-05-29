@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Card, Button, Container} from 'react-bootstrap';
+import { Card, Button, Container, Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { ChakraProvider } from '@chakra-ui/react'
@@ -45,7 +45,7 @@ export default function CartCard({cartProp}) {
 				})
 
 				window.setTimeout(() => {location.reload()},1000)
-				
+				   
 			} else {
 				Swal.fire({
 					title:"Something went wrong.",
@@ -63,63 +63,62 @@ export default function CartCard({cartProp}) {
 	
 
 	return (
-		<Container className="mb-3">
-			<Card>
-				<Card.Body>
-					<Card.Title>{productName}</Card.Title>
-					<Card.Subtitle>Description: </Card.Subtitle>
-					<Card.Text>{description}</Card.Text>
-					<Card.Text>SKU: {productSku}</Card.Text>
-					<Card.Text>Quantity: {qty}</Card.Text>
-					<Card.Text>Sub Total: Php {subTotal}</Card.Text>
-{/*					<Button variant="danger"
-						onClick={(e) => removeItem(_id)}
-					>Remove from cart</Button>*/}
 
-					<Button colorScheme='red' variant="danger" onClick={onOpen}>
-					  Remove item
-					</Button>
 
-					<AlertDialog
-					  isOpen={isOpen}
-					  leastDestructiveRef={cancelRef}
-					  onClose={onClose}
-					>
-					  <AlertDialogOverlay>
-					    <AlertDialogContent>
-					      <AlertDialogHeader fontSize='lg' fontWeight=''>
-					        Remove item from cart
-					      </AlertDialogHeader>
+					<Container fluid className="mb-3">
+						<Card>
+							<Card.Body>
+								<Card.Title>{productName}</Card.Title>
+								<Card.Subtitle>Description: </Card.Subtitle>
+								<Card.Text>{description}</Card.Text>
+								<Card.Text>SKU: {productSku}</Card.Text>
+								<Card.Text>Quantity: {qty}</Card.Text>
+								<Card.Text>Sub Total: Php {subTotal}</Card.Text>
 
-					      <AlertDialogBody>
-					        Are you sure? You can't undo this action afterwards.
-					      </AlertDialogBody>
+								<Button colorScheme='red' variant="danger" onClick={onOpen}>
+								  Remove item
+								</Button>
 
-					      <AlertDialogFooter>
-					        <Button 
-					        	ref={cancelRef} 
-					        	onClick={onClose}
-					        	>
-					          Cancel
-					        </Button>
-					        <Button 
-					       		//onClick={onClose} 
-					       		//onClick={(e) => {removeItem(id)}
+								<AlertDialog
+								  isOpen={isOpen}
+								  leastDestructiveRef={cancelRef}
+								  onClose={onClose}
+								>
+								  <AlertDialogOverlay>
+								    <AlertDialogContent>
+								      <AlertDialogHeader fontSize='lg' fontWeight=''>
+								        Remove item from cart
+								      </AlertDialogHeader>
 
-					        	variant="danger" 
-					       		onClick={() => removeAndClose()}
-					       		ml={3}
-					       		>
-					          Remove
-					        </Button>
-					      </AlertDialogFooter>
-					    </AlertDialogContent>
-					  </AlertDialogOverlay>
-					</AlertDialog>
+								      <AlertDialogBody>
+								        Are you sure? You can't undo this action afterwards.
+								      </AlertDialogBody>
 
-	
-				</Card.Body>
-			</Card>			
-		</Container>
+								      <AlertDialogFooter>
+								        <Button 
+								        	ref={cancelRef} 
+								        	onClick={onClose}
+								        	>
+								          Cancel
+								        </Button>
+								        <Button 
+								       		//onClick={onClose} 
+								       		//onClick={(e) => {removeItem(id)}
+
+								        	variant="danger" 
+								       		onClick={() => removeAndClose()}
+								       		ml={3}
+								       		>
+								          Remove
+								        </Button>
+								      </AlertDialogFooter>
+								    </AlertDialogContent>
+								  </AlertDialogOverlay>
+								</AlertDialog>
+							</Card.Body>
+						</Card>	
+					</Container>
+
+		
 	);
 }

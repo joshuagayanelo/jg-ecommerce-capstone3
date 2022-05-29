@@ -180,6 +180,7 @@
 			            variant={'outline'}
 			            // href={'/register'}
 			            onClick={() => toRegister()}
+			            borderColor='gray'
 			            _hover={{
 			              bg: '#ECD444',
 			              color:'black',
