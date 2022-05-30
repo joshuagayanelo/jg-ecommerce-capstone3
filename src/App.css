@@ -35,6 +35,13 @@
   font-size: .8rem;
 }
 
+.cartIcon {
+  color: white;
+  /*background-color: blue;*/
+  padding-top: 5%;
+  padding-right: 20px;
+}
+
 .footer {
   font-size: .8rem;
   padding-top: 0px;
@@ -145,7 +152,8 @@
 .avatar{
   margin-top: 4px !important;
   margin-right: 5px !important;
-  
+  margin-left: 10px !important;
+  margin-right: 0px !important;
 }
 
 .avatarMenuList {
@@ -162,4 +170,18 @@
   opacity: 50%;*/
   height: 100%;
 
+}
+
+.userName {
+  color: white;
+  font-size: .7rem;
+  width: 100px;
+  /*background-color: blue;*/
+  margin-top: .5%;
+  padding-top: 5% ;
+
+} 
+
+.cartFooter {
+  margin-bottom: 25% !important;
 }

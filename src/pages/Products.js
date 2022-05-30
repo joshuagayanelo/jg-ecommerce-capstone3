@@ -3,7 +3,10 @@
 //1. Identify the needed components for this page.
 import {Fragment, useEffect, useState} from 'react'
 import ProductCard from '../components/ProductCard';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
+// import { Grid, GridItem } from '@chakra-ui/react'
+import { SimpleGrid } from '@chakra-ui/react'
+
 
 // import coursesData from '../data/coursesData';
 // import productsData from '../data/productsData';
@@ -45,13 +48,33 @@ export default function Products(){
     }, [])
 
     return (
-        <div className="pb-5">
-            <Container>
-                <h1 className='text-center mt-3 mb-3'> Products</h1>
-                {/*<Banner bannerData={bannerCourse} />*/}
-                {products}  
-            </Container>
-        </div>
+        <Container fluid>
+            <Row className="pb-5 mb-5">
+                <Col xs={12} className="pt-3 mb-2 text-center" >
+                    <h1 className=' mt-3 mb-3'
+                    style={{
+                        fontSize:'2rem'
+                    }}>
+                    Mga Produkto
+                    </h1>
+                </Col>
+            </Row>
+            <Row className="mb-5">
+                <Col className="mb-5">
+{/*                    <Grid
+                        templateColumns='repeat(4, 1fr)' 
+                        gap={0}>
+                    {products}  
+                    </Grid>*/}
+                    <SimpleGrid 
+                    columns={[1, null, 3]} 
+                    >
+                    {products}  
+                    </SimpleGrid>
+                </Col>
+            </Row>
+
+        </Container>
     );
 };
 

@@ -4,8 +4,10 @@
 	import UserContext from '../UserContext';
 	import { ChakraProvider } from '@chakra-ui/react'
 	import {SiBuymeacoffee} from 'react-icons/si';
-	import {RiShoppingCartLine} from 'react-icons/ri';
-	import {RiListSettingsLine} from 'react-icons/ri';
+	import {FiShoppingCart} from 'react-icons/fi';
+	import React from 'react';
+
+	
 
 	import {
 	  Box,
@@ -41,25 +43,30 @@
 	export default function WithSubnavigation() {
 	 
 	  const { user } = useContext(UserContext);
+	  //console.log(user)
 
 	  const { isOpen, onToggle } = useDisclosure();
 
-	  const toRegister = (e) => {
+	  const toRegister = () => {
 	  	window.location.href="/register"
 	  }
 
-	  const toLogin = (e) => {	  
+	  const toLogin = () => {	  
 	  	window.location.href="/login"
 	  }
 
-	  const toLogout = (e) => {
+	  const toLogout = () => {
 	  	window.location.href="/logout"
 	  } 
 
 
-	  const toAdminDashboard = (e) => {
+	  const toAdminDashboard = () => {
 	  	window.location.href="/admin-dashboard"
 	  } 
+
+	  const toCart = () => {
+	  	window.location.href ="/cart"
+	  }
 
 	  return (
 	    <Box >
@@ -72,7 +79,8 @@
 	        borderBottom={1}
 	        borderStyle={'solid'}
 	        borderColor={useColorModeValue('#1e1e1e', 'gray.900')}
-	        align={'center'}>
+	        align={'center'}
+	        style={{paddingLeft: '30px'}}>
 
 	        <Flex
 	          flex={{ base: 1, md: 'auto' }}
@@ -108,12 +116,16 @@
 	          direction={'row'}
 	          spacing={6}>
 
-
+	          	{/*RIGHT NAV MENU*/}
 	        	{
 	        		(user.id !== null) ?
 
 		        	<Fragment>
 			        	<Menu>
+
+		        		<Text className="userName text-right">
+		        		Hello, Johnny
+		        		</Text>
 			        	  <MenuButton
 			        	    className="avatar"
 			        	    as={Button}
@@ -144,7 +156,15 @@
 			        	    >
 			        	    Sign Out</MenuItem>
 			        	  </MenuList>
+			        	  <div className="cartIcon text-center">
+			        	  	<FiShoppingCart size={20} 
+			        	  		type="button"
+			        	  		onClick={() => toCart()}
+			        	  		/>
+			        	  </div>
+
 			        	</Menu>
+			        
 		        	</Fragment>
 
 			        : false
@@ -154,11 +174,11 @@
 
 			    {
 			    	(user.id === null) ?
-			        <Stack direction="horizontal" gap={4}>
+			        <Stack direction="horizontal" gap={4} style={{paddingRight: '20px'}}>
 			          <Button
 			          	//display={{ base: 'none', md: 'inline-flex' }}
 			            //as={'Link'}			            
-			            //borderRadius='15px'
+			            borderRadius='1px'
 			            fontSize={'sm'}
 			            fontWeight={400}
 			            variant={'link'}
@@ -181,6 +201,7 @@
 			            // href={'/register'}
 			            onClick={() => toRegister()}
 			            borderColor='gray'
+
 			            _hover={{
 			              bg: '#ECD444',
 			              color:'black',
@@ -401,13 +422,13 @@
 	    href: '/',
 	  },
 	  {
-	    label: 'Products',
+	    label: 'Shop',
 	    href: '/products',
-	  },,
-	  {
-	    label: 'Cart',
-	    href: '/cart',
-	  },
+	  }
+	  // {
+	  //   label: 'Cart',
+	  //   href: '/cart',
+	  // },
 	];
 
 

@@ -75,7 +75,11 @@ export default function CartCard({cartProp}) {
 								<Card.Text>Quantity: {qty}</Card.Text>
 								<Card.Text>Sub Total: Php {subTotal}</Card.Text>
 
-								<Button colorScheme='red' variant="danger" onClick={onOpen}>
+								<Button 
+									colorScheme='red' 
+									rounded={'full'}
+									variant="danger" 
+									onClick={onOpen}>
 								  Remove item
 								</Button>
 

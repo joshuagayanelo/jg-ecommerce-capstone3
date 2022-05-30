@@ -179,7 +179,7 @@ export default function AdminCard({productProp}) {
 	//console.log(isActive)
 
 	return (
-		<Container className="mb-3">		
+		<Container className="mb-5">		
 			<Card>
 				<Card.Body>
 					<Card.Title>{productName}</Card.Title>

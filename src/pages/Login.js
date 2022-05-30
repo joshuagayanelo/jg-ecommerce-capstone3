@@ -92,7 +92,7 @@ export default function Login() {
 
 		: (user.isAdmin == false) ?
 
-		<Navigate to='/Products'/>
+		<Navigate to='/'/>
 
 		:
 		

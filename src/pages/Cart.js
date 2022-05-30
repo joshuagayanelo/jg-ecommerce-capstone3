@@ -61,18 +61,20 @@ export default function Cart () {
     return (
 
         <Container fluid>
-            <Row className ="pl-5 mb-3" 
+            <Row className ="pl-5 mb-3 text-center" 
             style={{
                 height:"100px", 
                 marginTop:"10px", 
                 //background:"blue"
             }}>
-                <h1 className=' mt-3 mb-3'
-                style={{
-                    fontSize:'2rem'
-                }}>
-                My Cart
-                </h1>
+                <Col>
+                    <h1 className='mt-3 mb-3'
+                    style={{
+                        fontSize:'2rem'
+                    }}>
+                    Cart
+                    </h1>
+                </Col>
             </Row>
 
             <Row>
