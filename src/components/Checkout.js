@@ -89,7 +89,7 @@ return (
 		             transform: 'translateY(2px)',
 		             boxShadow: 'lg',
 		           }}
-		           onClick={() => addToCart(productId)}
+		           //onClick={() => addToCart(productId)}
 		           >
 		           Checkout
 		         </Button>

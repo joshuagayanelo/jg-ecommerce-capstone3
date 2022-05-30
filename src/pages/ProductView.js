@@ -166,7 +166,7 @@ export default function CourseView () {
 		           direction={'column'}
 		           divider={
 		             <StackDivider
-		               borderColor={useColorModeValue('gray.200', 'gray.600')}
+		               borderColor={'gray'}
 		             />
 		           }>
 		           <VStack spacing={{ base: 4, sm: 6 }}>
@@ -279,8 +279,8 @@ export default function CourseView () {
 			           mt={8}
 			           size={'lg'}
 			           py={'7'}
-			           bg={useColorModeValue('gray.900', 'gray.50')}
-			           color={useColorModeValue('white', 'gray.900')}
+			           //bg={useColorModeValue('gray.900', 'gray.50')}
+			          // color={useColorModeValue('white', 'gray.900')}
 			           textTransform={'uppercase'}
 			           _hover={{
 			             transform: 'translateY(2px)',
@@ -299,8 +299,8 @@ export default function CourseView () {
 			           mt={8}
 			           size={'lg'}
 			           py={'7'}
-			           bg={useColorModeValue('gray.900', 'gray.50')}
-			           color={useColorModeValue('white', 'gray.900')}
+			           //bg={useColorModeValue('gray.900', 'gray.50')}
+			           //color={useColorModeValue('white', 'gray.900')}
 			           textTransform={'uppercase'}
 			           disabled
 			           _hover={{

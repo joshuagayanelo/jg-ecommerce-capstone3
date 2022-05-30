@@ -44,7 +44,9 @@ export default function CartCard({cartProp}) {
 					// text:"You can check your cart to review your items."
 				})
 
-				window.setTimeout(() => {location.reload()},1000)
+				// window.setTimeout(() => {location.reload()},1000)
+				setTimeout(window.location.reload.bind(window.location), 1000);
+
 				   
 			} else {
 				Swal.fire({

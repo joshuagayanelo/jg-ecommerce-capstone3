@@ -69,7 +69,9 @@ export default function AdminCard({productProp}) {
                 
                 })
 
-                window.setTimeout(() => {location.reload()},1000)
+                // window.setTimeout(() => {location.reload()},1000)
+                setTimeout(window.location.reload.bind(window.location), 1000);
+
 
             } else {
                 Swal.fire({
@@ -104,7 +106,9 @@ export default function AdminCard({productProp}) {
     				text:"You may still activate this product later."
     			})
 
-    			window.setTimeout(() => {location.reload()},1000)
+    			// window.setTimeout(() => {location.reload()},1000)
+    			setTimeout(window.location.reload.bind(window.location), 1000);
+
     			
     		} else {
     			Swal.fire({
@@ -144,7 +148,9 @@ export default function AdminCard({productProp}) {
     				text:"Your product is now live."
     			})
 
-    			window.setTimeout(() => {location.reload()},1000)
+    			// window.setTimeout(() => {location.reload()},1000)
+    			setTimeout(window.location.reload.bind(window.location), 1000);
+
     			
     		} else {
     			Swal.fire({
