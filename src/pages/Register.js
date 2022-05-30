@@ -146,7 +146,7 @@ export default function Register() {
 		       </Stack>
 		       <Box
 		         rounded={'lg'}
-		         bg={useColorModeValue('white', 'gray.700')}
+		         bg={'white'}
 		         boxShadow={'lg'}
 		         p={8}
 		         >
