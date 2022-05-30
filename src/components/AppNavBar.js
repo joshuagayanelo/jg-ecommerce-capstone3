@@ -136,7 +136,8 @@
 			        	    minW={0}>
 			        	    <Avatar
 			        	      size={'sm'}
-			        	      src={'./image/avatar.jpg'}
+			        	      // src={'./image/avatar.jpg'}
+			        	      src={'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'}
 			        	    />
 			        	  </MenuButton>
 			        	  <MenuList className="avatarMenuList">

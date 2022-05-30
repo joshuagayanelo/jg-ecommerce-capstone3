@@ -35,7 +35,7 @@ export default function App() {
 
   useEffect(() => {
 
-    fetch('http://localhost:4000/api/users/details', {
+    fetch('https://capstone2-joshuagayanelo.herokuapp.com/api/users/details', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }

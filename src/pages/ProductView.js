@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 
 import {
   Box,
+  Avatar,
   chakra,
   Container,
   Stack,

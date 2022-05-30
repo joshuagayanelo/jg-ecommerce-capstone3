@@ -5,7 +5,7 @@ import {Fragment, useEffect, useState} from 'react'
 import ProductCard from '../components/ProductCard';
 import { Container, Row, Col } from 'react-bootstrap';
 // import { Grid, GridItem } from '@chakra-ui/react'
-import { SimpleGrid } from '@chakra-ui/react'
+import { SimpleGrid, Avatar } from '@chakra-ui/react'
 
 
 // import coursesData from '../data/coursesData';
