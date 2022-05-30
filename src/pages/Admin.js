@@ -1,6 +1,3 @@
-//This page will be use to showcase all the available courses stored in our collection in MOngoDB.
-
-//1. Identify the needed components for this page.
 import {Fragment, useEffect, useState} from 'react'
 import AdminCard from '../components/AdminCard';
 import { Container, Row, Button, Modal, Form } from 'react-bootstrap';
@@ -73,9 +70,7 @@ export default function Products(){
                 
                 })
 
-                // window.setTimeout(() => {location.reload()},1000)
-                setTimeout(window.location.reload.bind(window.location), 1000);
-
+                window.setTimeout(() => {location.reload()},2000)
 
             } else {
                 Swal.fire({
@@ -89,12 +84,12 @@ export default function Products(){
     }
 
     useEffect(() => {
-    	fetch('https://capstone2-joshuagayanelo.herokuapp.com/api/products/inventory', {
-    	    headers: {
-    	        'Content-Type': 'application/json',
-    	        Authorization: `Bearer ${localStorage.getItem('token')}`
-    	    }
-    	})
+        fetch('https://capstone2-joshuagayanelo.herokuapp.com/api/products/inventory', {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
         .then(res => res.json())
         .then(data => {
             
@@ -128,8 +123,8 @@ export default function Products(){
             <Container>
 
                 <h1 className='text-center mt-3 mb-3'>Admin Dashboard</h1>
-   				 <Container className="text-center">
-	                <Button variant ="success" className="mr-1 mb-3"  onClick={handleShow}>Add new product</Button>
+                 <Container className="text-center">
+                    <Button variant ="success" className="mr-1 mb-3"  onClick={handleShow}>Add new product</Button>
 
                     {/*ADD PRODUCT MODAL*/}
                     <Modal show={show} onHide={handleClose}>
@@ -234,13 +229,12 @@ export default function Products(){
                             </Modal.Footer>
 
                           </Form>
-	               
+                   
                         </Modal>
-             	 </Container>
+                 </Container>
                 {products}  
 
             </Container>
         </div>
     );
 };
-

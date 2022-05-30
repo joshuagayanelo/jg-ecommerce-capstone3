@@ -59,7 +59,7 @@ export default function AdminCard({productProp}) {
         })
         .then(res => res.json())
         .then(data => {
-           // console.log(data)
+            console.log(data)
             if(data === true){
 
                  Swal.fire({
@@ -70,8 +70,7 @@ export default function AdminCard({productProp}) {
                 })
 
                 // window.setTimeout(() => {location.reload()},1000)
-                setTimeout(window.location.reload.bind(window.location), 1000);
-
+                setTimeout( window.location.reload.bind( window.location ), 2000 )
 
             } else {
                 Swal.fire({
@@ -107,8 +106,7 @@ export default function AdminCard({productProp}) {
     			})
 
     			// window.setTimeout(() => {location.reload()},1000)
-    			setTimeout(window.location.reload.bind(window.location), 1000);
-
+    			setTimeout( window.location.reload.bind( window.location ), 2000 )
     			
     		} else {
     			Swal.fire({
@@ -149,8 +147,7 @@ export default function AdminCard({productProp}) {
     			})
 
     			// window.setTimeout(() => {location.reload()},1000)
-    			setTimeout(window.location.reload.bind(window.location), 1000);
-
+    			setTimeout( window.location.reload.bind( window.location ), 2000 )
     			
     		} else {
     			Swal.fire({
@@ -182,9 +179,7 @@ export default function AdminCard({productProp}) {
       }
     }, [productName, productSku, description, price, quantity])
 
-	//
-
-	(isActive)
+	//console.log(isActive)
 
 	return (
 		<Container className="mb-5">		

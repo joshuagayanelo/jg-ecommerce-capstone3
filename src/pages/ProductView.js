@@ -22,10 +22,11 @@ import {
   VisuallyHidden,
   List,
   ListItem,
-  useToast
+  useToast,
 } from '@chakra-ui/react';
 import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { MdLocalShipping } from 'react-icons/md';
+import { BiArrowBack } from 'react-icons/bi';
 
 export default function CourseView () {
 
@@ -107,6 +108,12 @@ export default function CourseView () {
 		window.location.href ="/login"
 	}
 
+	const toProducts = () => {
+		window.location.href ="/products"
+	}
+
+
+
 
 
 	// console.log(user.id)
@@ -130,6 +137,7 @@ export default function CourseView () {
 			setQuantity(data.quantity)
 			setProductIdA(data._id)
 
+
 			//console.log(data.quantity)
 
 
@@ -138,7 +146,17 @@ export default function CourseView () {
 
 	return(
 
-		<Container maxW={'7xl'}>
+		<Container maxW={'6xl'}>
+
+					<Text
+					  color={useColorModeValue('gray.900', 'gray.400')}
+					  fontWeight={300}
+					  fontSize={'1xl'}
+					  fontWeight={500}
+					  mt={12}>
+					  Go back<BiArrowBack type="button" onClick={()=> toProducts()} h={5} w={5}/>
+					</Text>
+
 		     <SimpleGrid
 		       columns={{ base: 1, lg: 2 }}
 		       spacing={{ base: 8, md: 10 }}
@@ -285,7 +303,29 @@ export default function CourseView () {
 
 			         { 
 
-		        	  user.id !== null && quantity != 0 ?
+			          user.id !== null && countQty === 0 ?
+
+			         <Button
+			           rounded={'full'}
+			           disabled
+			           w={'full'}
+			           mt={8}
+			           size={'lg'}
+			           py={'7'}
+			           bg={'#1e1e1e'}
+			           color={'white'}
+			           fontSize={'sm'}
+			           fontWeight={400}
+			          // textTransform={'uppercase'}
+			           onClick={()=>toLogin()}
+			           _hover={{
+			             transform: 'translateY(2px)',
+			             boxShadow: 'lg',
+			           }}>
+			           Add to cart
+			         </Button>
+
+		        	 : user.id !== null && quantity != 0 ?
 
 			         <Button
 			           rounded={'full'}
@@ -307,27 +347,6 @@ export default function CourseView () {
 			           Add to cart
 			         </Button>
 
-			         : user.id !== null && countQty === 0 ?
-
-			         <Button
-			           rounded={'full'}
-			           disabled
-			           w={'full'}
-			           mt={8}
-			           size={'lg'}
-			           py={'7'}
-			           bg={'#1e1e1e'}
-			           color={'white'}
-			           fontSize={'sm'}
-			           fontWeight={400}
-			          // textTransform={'uppercase'}
-			           onClick={()=>toLogin()}
-			           _hover={{
-			             transform: 'translateY(2px)',
-			             boxShadow: 'lg',
-			           }}>
-			           Add to cart
-			         </Button>
 
 
 			         : quantity == 0 ?
