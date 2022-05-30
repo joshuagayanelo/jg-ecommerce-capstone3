@@ -70,7 +70,8 @@ export default function Products(){
                 
                 })
 
-                window.setTimeout(() => {location.reload()},2000)
+                // window.setTimeout(() => {location.reload()},2000)
+                setTimeout( window.location.reload.bind( window.location ), 2000 )
 
             } else {
                 Swal.fire({
