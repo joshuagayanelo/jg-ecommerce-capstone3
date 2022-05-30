@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Card, Button, Container, Row, Col} from 'react-bootstrap';
+import { Card, Container, Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { ChakraProvider } from '@chakra-ui/react'
@@ -12,7 +12,10 @@ import {
   AlertDialogHeader,
   AlertDialogContent,
   AlertDialogOverlay,
-  useDisclosure
+  useDisclosure, 
+  useToast, 
+  Button, 
+  ButtonGroup
 } from '@chakra-ui/react'
 
 export default function CartCard({cartProp}) {
@@ -21,13 +24,12 @@ export default function CartCard({cartProp}) {
 
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const cancelRef = React.useRef()
-
-
+	const toast = useToast();
 
 	const removeItem = () => {
 		//e.preventDefault();
 
-		fetch(`http://localhost:4000/api/cart/remove-item/${_id}`,{
+		fetch(`https://capstone2-joshuagayanelo.herokuapp.com/api/cart/remove-item/${_id}`,{
 			method: "PUT", 
 			headers: {
 				'Content-Type':'application/json',
@@ -38,10 +40,13 @@ export default function CartCard({cartProp}) {
 		.then(res => res.json())
 		.then(data => {
 			if(data === true) {
-				Swal.fire({
-					title:"Item removed.",
-					icon:"success",
-					// text:"You can check your cart to review your items."
+				toast({
+				  title: 'Item successfully removed',
+				  //description: `User ${email} has been verified.`,
+				  status: 'success',
+				  position: 'top',
+				  isClosable: true,
+				  duration:3500
 				})
 
 				// window.setTimeout(() => {location.reload()},1000)
@@ -49,11 +54,15 @@ export default function CartCard({cartProp}) {
 
 				   
 			} else {
-				Swal.fire({
-					title:"Something went wrong.",
-					icon:"error",
-					text:"Please try again."
+
+				toast({
+				  title: 'Incorrect email or password.',
+				  status: 'error',
+				  position: 'top',
+				  isClosable: true,
+				  duration:3500
 				})
+
 			}
 		})
 	};
@@ -101,12 +110,16 @@ export default function CartCard({cartProp}) {
 								      </AlertDialogBody>
 
 								      <AlertDialogFooter>
+								      <ButtonGroup spacing={1}>
+								      
 								        <Button 
 								        	ref={cancelRef} 
 								        	onClick={onClose}
+								        	mr={'3px'}
 								        	>
 								          Cancel
 								        </Button>
+
 								        <Button 
 								       		//onClick={onClose} 
 								       		//onClick={(e) => {removeItem(id)}
@@ -117,6 +130,7 @@ export default function CartCard({cartProp}) {
 								       		>
 								          Remove
 								        </Button>
+								        </ButtonGroup >
 								      </AlertDialogFooter>
 								    </AlertDialogContent>
 								  </AlertDialogOverlay>

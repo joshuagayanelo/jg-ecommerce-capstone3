@@ -33,11 +33,11 @@ export default function Products(){
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:4000/api/products')
+        fetch('https://capstone2-joshuagayanelo.herokuapp.com/api/products')
         .then(res => res.json())
         .then(data => {
             
-            console.log(data)
+           // console.log(data)
             setProducts(data.map(products => {
                 return(
                      <ProductCard key={products._id} productProp={products} />

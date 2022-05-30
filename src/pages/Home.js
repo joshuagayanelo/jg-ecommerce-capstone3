@@ -2,7 +2,12 @@ import Banner from './../components/Banner';
 import Category from './../components/Category';
 import ProductHome from './../components/ProductHome';
 import Highlights from './../components/Highlights';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
+
+import {
+  Image, 
+  SimpleGrid
+} from '@chakra-ui/react';
 
 const bannerHome = {
 	title: 'Bentta',
@@ -23,20 +28,99 @@ const productHomeA = {
 
 export default function Home() {
 	return(
-		<div className="home-section">
-			<div>
-				<Banner bannerData = {bannerHome} />
-			</div>
+		<Container fluid className="">
 
-			<div className="home-section2 text-right">
-				<Category categoryData = {categoryHome} />
-			</div>
+			<Row className="home-section">
 
-			<div className="home-section3 text-center">
-				<ProductHome productHomeData = {productHomeA} />
-			</div>
-		</div>	
+				<Col xs={12} md={1}>
+					<div></div>
+				</Col>
 
+				<Col xs={12} md={5}>
+					<Banner bannerData = {bannerHome} />
+				</Col>
+
+				<Col xs={12} md={5}>
+					<Container fluid className="imageOne">
+					 <Image src="./products/group1.png" />
+					</Container>
+				</Col>
+
+				<Col md={1}>
+					<div></div>
+				</Col>
+			</Row>
+
+			<Row className="home-section2 text-right">
+				<Col xs={12} md={0} >
+					<div></div>
+				</Col>
+
+				<Col xs={{span: 12, order: 2}} md={{span: 5, order: 1}}>
+					<Container fluid className="imageOne">
+					 <Image src="./products/image2.jpg" />
+					</Container>
+				</Col>
+
+				<Col xs={{span: 12, order: 1}} md={{span: 5, order: 2}}> 
+
+					<Category categoryData = {categoryHome} />
+
+				</Col>
+
+				<Col xs={12} md={1} >
+					<div></div>
+				</Col>
+			</Row>
+
+			<Row className="home-section3 text-center">
+				<Col xs={12} md={12}>
+					<ProductHome productHomeData = {productHomeA} />
+				</Col>
+
+				<Col xs={12} md={4}>
+					<Container fluid className="imageOne">
+					 <Image src="./products/image1.jpg" />
+					</Container>
+				</Col>
+
+				<Col xs={12} md={4}>
+					<Container fluid className="imageOne">
+					 <Image src="./products/image6.jpg" />
+					</Container>
+				</Col>
+
+				<Col xs={12} md={4}>
+					<Container fluid className="imageOne">
+					 <Image src="./products/image3.jpg" />
+					</Container>
+				</Col>
+
+			</Row>
+
+			<Row className="home-section4 text-center">
+
+				<Col xs={12} md={4}>
+					<Container fluid className="imageOne">
+					 <Image src="./products/image4.jpg" />
+					</Container>
+				</Col>
+
+				<Col xs={12} md={4}>
+					<Container fluid className="imageOne">
+					 <Image src="./products/image2.jpg" />
+					</Container>
+				</Col>
+
+				<Col xs={12} md={4}>
+					<Container fluid className="imageOne">
+					 <Image src="./products/image5.jpg" />
+					</Container>
+				</Col>
+
+			</Row>
+
+		</Container>
 	);
 };
 

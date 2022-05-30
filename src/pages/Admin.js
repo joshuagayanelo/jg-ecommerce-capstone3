@@ -40,7 +40,7 @@ export default function Products(){
         
         e.preventDefault();
 
-        fetch('http://localhost:4000/api/products/new', {
+        fetch('https://capstone2-joshuagayanelo.herokuapp.com/api/products/new', {
             method:"POST", 
             headers: {
                 'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ export default function Products(){
     }
 
     useEffect(() => {
-    	fetch('http://localhost:4000/api/products/inventory', {
+    	fetch('https://capstone2-joshuagayanelo.herokuapp.com/api/products/inventory', {
     	    headers: {
     	        'Content-Type': 'application/json',
     	        Authorization: `Bearer ${localStorage.getItem('token')}`

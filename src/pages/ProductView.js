@@ -2,7 +2,6 @@ import {useState, useEffect, useContext} from 'react';
 import {Row, Column, Card, Col, Form} from 'react-bootstrap';
 import {useParams, useNavigate} from 'react-router-dom';
 import UserContext from '../UserContext';
-import Swal from 'sweetalert2';
 import {Link} from 'react-router-dom';
 
 import {
@@ -22,6 +21,7 @@ import {
   VisuallyHidden,
   List,
   ListItem,
+  useToast
 } from '@chakra-ui/react';
 import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { MdLocalShipping } from 'react-icons/md';
@@ -29,11 +29,9 @@ import { MdLocalShipping } from 'react-icons/md';
 export default function CourseView () {
 
 	const {user} = useContext(UserContext);
-	
 	const navigate = useNavigate();
-
-	//The userParams hook allows us to retrieve the courseId passed via the URL
 	const {productId} = useParams();
+	const toast = useToast();
 
 	const [name, setName] = useState("");
 	const [productIdA, setProductIdA] = useState("");
@@ -42,7 +40,6 @@ export default function CourseView () {
 	const [description, setDescription] = useState("");
 	const [price, setPrice] = useState(0);
 	const [quantity, setQuantity] = useState(0);
-
 	const [countQty, setCountQty] = useState(0)
 	 
 		const handleClick1 = () => {
@@ -57,7 +54,7 @@ export default function CourseView () {
 
 	const addToCart = (productId) => {
 
-		fetch("http://localhost:4000/api/cart/add-to-cart/", {
+		fetch("https://capstone2-joshuagayanelo.herokuapp.com/api/cart/add-to-cart/", {
 			method: "POST",
 			headers: {
 				'Content-Type': 'application/json',
@@ -80,35 +77,48 @@ export default function CourseView () {
 			//console.log(data)
 
 			if(data === true) {
-				Swal.fire({
-					title:"Added to cart.",
-					icon:"success",
-					text:"You can check your cart to review your items."
+
+				toast({
+				  title: 'Added to cart successfully.',
+				  description:'You may now check your cart.',
+				  status: 'success',
+				  position: 'top',
+				  isClosable: true,
+				  duration:3500
 				})
 
 				navigate('/products')
 
 			} else {
-				Swal.fire({
-					title:"Something went wrong.",
-					icon:"error",
-					text:"Please try again."
+
+				toast({
+				  title: 'Somwething went wrong.',
+				  status: 'error',
+				  position: 'top',
+				  isClosable: true,
+				  duration:3500
 				})
 			}
 		})
 	};
 
+	const toLogin = () => {
+		window.location.href ="/login"
+	}
+
+
+
 	// console.log(user.id)
 	// console.log(productIdA)
-	//console.log(countQty)
 	// console.log(price)
 	// console.log(description)
 	// console.log(productSku)
 	//console.log(productNameA)
+	//console.log(countQty)
 
 	useEffect(() => {
 		// console.log(productId)
-		fetch(`http://localhost:4000/api/products/${productId}`)
+		fetch(`https://capstone2-joshuagayanelo.herokuapp.com/api/products/${productId}`)
 		.then(res => res.json())
 		.then(data => {
 			//console.log(data);
@@ -272,16 +282,21 @@ export default function CourseView () {
 			
 				</Form>
 
-		         { user.id !== null && quantity != 0 ?
+			         { 
+
+		        	  user.id !== null && quantity != 0 ?
+
 			         <Button
 			           rounded={'full'}
 			           w={'full'}
 			           mt={8}
 			           size={'lg'}
 			           py={'7'}
-			           //bg={useColorModeValue('gray.900', 'gray.50')}
-			          // color={useColorModeValue('white', 'gray.900')}
-			           textTransform={'uppercase'}
+			           bg={'#1e1e1e'}
+			           color={'white'}
+			           fontSize={'sm'}
+			           fontWeight={400}
+			           //textTransform={'uppercase'}
 			           _hover={{
 			             transform: 'translateY(2px)',
 			             boxShadow: 'lg',
@@ -291,6 +306,51 @@ export default function CourseView () {
 			           Add to cart
 			         </Button>
 
+			         : user.id !== null && countQty === 0 ?
+
+			         <Button
+			           rounded={'full'}
+			           disabled
+			           w={'full'}
+			           mt={8}
+			           size={'lg'}
+			           py={'7'}
+			           bg={'#1e1e1e'}
+			           color={'white'}
+			           fontSize={'sm'}
+			           fontWeight={400}
+			          // textTransform={'uppercase'}
+			           onClick={()=>toLogin()}
+			           _hover={{
+			             transform: 'translateY(2px)',
+			             boxShadow: 'lg',
+			           }}>
+			           Add to cart
+			         </Button>
+
+
+			         : quantity == 0 ?
+
+			         <Button
+			           rounded={'full'}
+			           w={'full'}
+			           mt={8}
+			           size={'lg'}
+			           py={'7'}
+			           bg={'#1e1e1e'}
+			           color={'white'}
+			           fontSize={'sm'}
+			           fontWeight={400}
+			           //textTransform={'uppercase'}
+			           disabled
+			           _hover={{
+			             transform: 'translateY(2px)',
+			             boxShadow: 'lg',
+			           }}>
+			           No stocks available
+			         </Button>
+
+
 			         :
 
 			         <Button
@@ -299,16 +359,20 @@ export default function CourseView () {
 			           mt={8}
 			           size={'lg'}
 			           py={'7'}
-			           //bg={useColorModeValue('gray.900', 'gray.50')}
-			           //color={useColorModeValue('white', 'gray.900')}
-			           textTransform={'uppercase'}
-			           disabled
+			           bg={'#1e1e1e'}
+			           color={'white'}
+			           fontSize={'sm'}
+			           fontWeight={400}
+			          // textTransform={'uppercase'}
+			           onClick={()=>toLogin()}
 			           _hover={{
 			             transform: 'translateY(2px)',
 			             boxShadow: 'lg',
 			           }}>
-			           No stocks available
+			           Please sign in to continue
 			         </Button>
+
+
 		         }
 
 		         <Stack direction="row" alignItems="center" justifyContent={'center'} className="cartFooter">

@@ -30,7 +30,7 @@ export default function Cart () {
    //console.log(setCart)
 
     useEffect(() => {
-        fetch('http://localhost:4000/api/cart/my-cart/', {
+        fetch('https://capstone2-joshuagayanelo.herokuapp.com/api/cart/my-cart/', {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('token')}`

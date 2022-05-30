@@ -43,7 +43,7 @@ export default function AdminCard({productProp}) {
         
         e.preventDefault();
 
-        fetch(`http://localhost:4000/api/products/update/${_id}`, {
+        fetch(`https://capstone2-joshuagayanelo.herokuapp.com/api/products/update/${_id}`, {
             method:"PUT", 
             headers: {
                 'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ export default function AdminCard({productProp}) {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
+           // console.log(data)
             if(data === true){
 
                  Swal.fire({
@@ -89,7 +89,7 @@ export default function AdminCard({productProp}) {
     const deactivateProduct = () => {
     	//e.preventDefault();
 
-    	fetch(`http://localhost:4000/api/products/archive/${_id}`,{
+    	fetch(`https://capstone2-joshuagayanelo.herokuapp.com/api/products/archive/${_id}`,{
     		method: "PUT", 
     		headers: {
     			'Content-Type':'application/json',
@@ -131,7 +131,7 @@ export default function AdminCard({productProp}) {
     const activateProduct = () => {
     	//e.preventDefault();
 
-    	fetch(`http://localhost:4000/api/products/activate/${_id}`,{
+    	fetch(`https://capstone2-joshuagayanelo.herokuapp.com/api/products/activate/${_id}`,{
     		method: "PUT", 
     		headers: {
     			'Content-Type':'application/json',
@@ -182,7 +182,9 @@ export default function AdminCard({productProp}) {
       }
     }, [productName, productSku, description, price, quantity])
 
-	//console.log(isActive)
+	//
+
+	(isActive)
 
 	return (
 		<Container className="mb-5">		

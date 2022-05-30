@@ -1,3 +1,4 @@
+
 ""	//import { Navbar, Nav, Form } from 'react-bootstrap';
 	//import { Link } from 'react-router-dom';
 	import { useState, Fragment, useContext } from 'react';
@@ -150,6 +151,7 @@
 			        	    	: false
 
 			        	    }
+			        	    
 			        	    <MenuDivider />
 			        	    <MenuItem
 			        	    onClick={() => toLogout()}
@@ -206,7 +208,8 @@
 			              bg: '#ECD444',
 			              color:'black',
 			              colorScheme:'black'
-			            }}>
+			            }}
+			           >
 			            Sign Up
 			          </Button>
 			         </Stack>

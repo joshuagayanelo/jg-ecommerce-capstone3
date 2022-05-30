@@ -1,9 +1,27 @@
 import Banner from './../components/Banner';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, Form } from 'react-bootstrap';
 import { useState, useEffect, useContext } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import UserContext from '../UserContext'
-import Swal from 'sweetalert2'
+
+import {
+  Flex,
+  Box,
+  FormControl,
+  FormLabel,
+  Input,
+  InputGroup,
+  HStack,
+  InputRightElement,
+  Stack,
+  Button,
+  Heading,
+  Text,
+  useColorModeValue,
+  Link,
+  useToast
+} from '@chakra-ui/react';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 const bannerRegiser = {
 	title: 'Sign up here',
@@ -11,16 +29,6 @@ const bannerRegiser = {
 }
 
 export default function Register() {
-
-	// function registerUser(e){
-	// 		e.preventDefault();
-			
-	// 		setEmail("");
-	// 		setPassword1("");
-	// 		setPassword2("");
-
-	// 		Swal.fire("Thank you for registering!");
-	// };
 
 	const {user, setUser} = useContext(UserContext);
 
@@ -35,12 +43,14 @@ export default function Register() {
 	const [password2, setPassword2] = useState("");
 	//State to determin whether the button is enabled or not.
 	const [isActive, setIsActive] = useState(false);
+	const [showPassword, setShowPassword] = useState(false);
+	const toast = useToast();
 
 	const registerUser = (e) => {
 		
 	 		e.preventDefault();
 
-	 				fetch("http://localhost:4000/api/users/register", {
+	 				fetch("https://capstone2-joshuagayanelo.herokuapp.com/api/users/register", {
 	 					method: "POST", 
 	 					headers: {
 	 						'Content-Type': 'application/json'
@@ -65,19 +75,24 @@ export default function Register() {
 	 						setPassword1("");
 	 						setPassword2("");
 
-	 						Swal.fire({
-	 							title: "Registration successful",
-	 							icon: "success", 
-	 							text: "Welcome to ARRAL!"
+	 						toast({
+	 						  title: 'Account successfully created.',
+	 						  status: 'success',
+	 						  position: 'top',
+	 						  isClosable: true,
+	 						  duration:3500
 	 						})
 
 	 						navigate("/login")
 
 	 					} else {
-	 						Swal.fire({
-	 							title: "Duplicate email found.",
-	 							icon: "error", 
-	 							text: "Kindly provide another email to complete the registration."
+
+	 						toast({
+	 						  title: 'Something went wrong. Please try again.',
+	 						  status: 'error',
+	 						  position: 'top',
+	 						  isClosable: true,
+	 						  duration:3500
 	 						})
 	 					}
 
@@ -85,7 +100,7 @@ export default function Register() {
 
 	}
 
-
+	//console.log(firstName)
 	// console.log(email);
 	// console.log(password1);
 	// console.log(password2);
@@ -112,98 +127,274 @@ export default function Register() {
 		<Navigate to='/Courses'/>
 
 		:
+		<div>
+		<Flex
+		     minH={'100vh'}
+		     align={'center'}
+		     justify={'center'}
+		     bg={'#F2F2F2'}
+		     className="">
 
-		<Container>
-			{/*<Banner bannerData = {bannerRegiser}/>*/}
-			<h1 className="text-center mt-3"> Register Here </h1>
+		     <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6} className="signUpInput">
+		       <Stack align={'center'} className= "">
+		         <Heading fontSize={'3xl'} textAlign={'center'}>
+		           Sign up
+		         </Heading>
+		         <Text fontSize={'lg'} color={'gray.600'}>
+		           to enjoy all of our cool features ✌️
+		         </Text>
+		       </Stack>
+		       <Box
+		         rounded={'lg'}
+		         bg={useColorModeValue('white', 'gray.700')}
+		         boxShadow={'lg'}
+		         p={8}
+		         >
 
-			<Form onSubmit={(e) => registerUser(e)}>
+		         <Stack spacing={4}>
+		           <HStack>
 
-			  <Form.Group className ="mb-3" controlId="firstName">
-			    <Form.Label>First Name</Form.Label>
-			    <Form.Control 
-			    type="text" 
-			    placeholder="Enter your last name" 
-			    value ={firstName}
-			    onChange={e => {setFirstName(e.target.value)}}
-			    required
-			    />
-			  </Form.Group>
+		             <Box>
+		               <FormControl 
+		               	id="firstName" 
+		               	isRequired 
+		               	value ={firstName}
+                	    onChange={e => {setFirstName(e.target.value)}}>
+		                 <FormLabel>First Name</FormLabel>
+		                 <Input type="text" />
+		               </FormControl>
+		             </Box>
+
+		             <Box>
+		               <FormControl 
+		           	    id="lastName"
+		               	isRequired 
+                	    value ={lastName}
+                	    onChange={e => {setLastName(e.target.value)}}>
+		                 <FormLabel>Last Name</FormLabel>
+		                 <Input type="text" />
+		               </FormControl>
+		             </Box>
+
+		           </HStack>
+		           <FormControl 
+		           	id="email" isRequired
+	               	isRequired 
+            	    value ={email}
+            	    onChange={e => {setEmail(e.target.value)}}>
+		             <FormLabel>Email address</FormLabel>
+		             <Input type="email" />
+		           </FormControl>
+
+		           <FormControl 
+		           	id="mobileNo" isRequired
+	               	isRequired 
+            	    value ={mobileNo}
+            	    onChange={e => {setMobileNo(e.target.value)}}>
+		             <FormLabel>Mobile Number</FormLabel>
+		             <Input type="text" />
+		           </FormControl>
+
+		           <FormControl 
+		           	id="password1" 
+	               	isRequired 
+            	    value ={password1}
+            	    onChange={e => {setPassword1(e.target.value)}}>
+		             <FormLabel>Password</FormLabel>
+		             <InputGroup>
+		               <Input type={showPassword ? 'text' : 'password'} />
+		               <InputRightElement h={'full'}>
+		                 <Button
+		                   variant={'ghost'}
+		                   onClick={() =>
+		                     setShowPassword((showPassword) => !showPassword)
+		                   }>
+		                   {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+		                 </Button>
+		               </InputRightElement>
+		             </InputGroup>
+		           </FormControl>
+
+		           <FormControl 
+		           	id="password2" 
+		           	isRequired
+		           	value ={password2}
+		           	onChange={e => {setPassword2(e.target.value)}}>
+		             <FormLabel>Confirm Password</FormLabel>
+		             <InputGroup>
+		               <Input type={showPassword ? 'text' : 'password'} />
+		               <InputRightElement h={'full'}>
+		                 <Button
+		                   variant={'ghost'}
+		                   onClick={() =>
+		                     setShowPassword((showPassword) => !showPassword)
+		                   }>
+		                   {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+		                 </Button>
+		               </InputRightElement>
+		             </InputGroup>
+		           </FormControl>
+
+		           <Stack spacing={10} pt={2}>
+
+                  	{ isActive ?
+         	           <Button
+         	           		onClick={(e) => registerUser(e)}
+         	           		type={'submit'}
+         	           		fontSize={'sm'}
+         	           		fontWeight={400}
+         	           		colorScheme={'blue'} 
+         	           		variant={'outline'}
+         	           		rounded={'full'}
+         	           		backgroundColor={'#1e1e1e'}
+         	           		borderColor={'#1e1e1e'}
+         	           		color={'white'}
+         	           		// _hover={{
+         	           		//   transform: 'translateY(2px)',
+         	           		//   boxShadow: 'lg',
+         	           		//   borderColor: '#ECD444'}}
+         	           		_hover={{
+         	           		  bg: '#ECD444',
+         	           		  color:'black',
+         	           		  colorScheme:'black',
+         	           		  borderColor:'#ECD444'
+         	           		}}
+         	        		
+
+         	           		
+         	           	>
+         	             Sign up
+         	           </Button>
+         	         :
+         	           <Button 
+         	           		disabled
+         	           		fontSize={'sm'}
+         	           		fontWeight={400}
+         	           		colorScheme={'blue'} 
+         	           		variant={'outline'}
+         	           		rounded={'full'}
+         	           		backgroundColor={'#1e1e1e'}
+         	           		borderColor={'#1e1e1e'}
+         	           		color={'white'}
+         	           		// _hover={{
+         	           		//   transform: 'translateY(2px)',
+         	           		//   boxShadow: 'lg',
+         	           		//   borderColor: '#ECD444'}}
+         	           		_hover={{
+         	           		  bg: '#ECD444',
+         	           		  color:'black',
+         	           		  colorScheme:'black',
+         	           		  borderColor:'#ECD444'
+         	           		}}
+         	           	>
+         	             Sign up
+         	           </Button>
+                  	}
 
 
-			  <Form.Group className ="mb-3" controlId="lastName">
-			    <Form.Label>Last Name</Form.Label>
-			    <Form.Control 
-			    type="text" 
-			    placeholder="Enter your last name" 
-			    value ={lastName}
-			    onChange={e => {setLastName(e.target.value)}}
-			    required
-			    />
-			  </Form.Group>
+		           </Stack>
+		           <Stack pt={6}>
+		             <Text align={'center'}>
+		               Already a user? <Link color={'blue.400'} href='/login'>Login</Link>
+		             </Text>
+		           </Stack>
+		         </Stack>
+		       </Box>
+		     </Stack>
+		   </Flex>
+		   </div>
 
-			  <Form.Group className ="mb-3" controlId="userEmail">
-			    <Form.Label>Email address</Form.Label>
-			    <Form.Control 
-			    type="email" 
-			    placeholder="Enter email" 
-			    value ={email}
-			    onChange={e => {setEmail(e.target.value)}}
-			    required
-			    />
-			    <Form.Text className="text-muted">
-			      We'll never share your email with anyone else.
-			    </Form.Text>
-			  </Form.Group>
+		// <Container>
+		// 	{/*<Banner bannerData = {bannerRegiser}/>*/}
+		// 	<h1 className="text-center mt-3"> Register Here </h1>
+
+		// 	<Form onSubmit={(e) => registerUser(e)}>
+
+		// 	  <Form.Group className ="mb-3" controlId="firstName">
+		// 	    <Form.Label>First Name</Form.Label>
+		// 	    <Form.Control 
+		// 	    type="text" 
+		// 	    placeholder="Enter your last name" 
+		// 	    value ={firstName}
+		// 	    onChange={e => {setFirstName(e.target.value)}}
+		// 	    required
+		// 	    />
+		// 	  </Form.Group>
 
 
-			  <Form.Group className ="mb-3" controlId="mobileNo">
-			    <Form.Label>Mobile Number</Form.Label>
-			    <Form.Control 
-			    type="text" 
-			    placeholder="Enter your mobile number" 
-			    value ={mobileNo}
-			    onChange={e => {setMobileNo(e.target.value)}}
-			    required
-			    />
+		// 	  <Form.Group className ="mb-3" controlId="lastName">
+		// 	    <Form.Label>Last Name</Form.Label>
+		// 	    <Form.Control 
+		// 	    type="text" 
+		// 	    placeholder="Enter your last name" 
+		// 	    value ={lastName}
+		// 	    onChange={e => {setLastName(e.target.value)}}
+		// 	    required
+		// 	    />
+		// 	  </Form.Group>
+
+		// 	  <Form.Group className ="mb-3" controlId="userEmail">
+		// 	    <Form.Label>Email address</Form.Label>
+		// 	    <Form.Control 
+		// 	    type="email" 
+		// 	    placeholder="Enter email" 
+		// 	    value ={email}
+		// 	    onChange={e => {setEmail(e.target.value)}}
+		// 	    required
+		// 	    />
+		// 	    <Form.Text className="text-muted">
+		// 	      We'll never share your email with anyone else.
+		// 	    </Form.Text>
+		// 	  </Form.Group>
+
+
+		// 	  <Form.Group className ="mb-3" controlId="mobileNo">
+		// 	    <Form.Label>Mobile Number</Form.Label>
+		// 	    <Form.Control 
+		// 	    type="text" 
+		// 	    placeholder="Enter your mobile number" 
+		// 	    value ={mobileNo}
+		// 	    onChange={e => {setMobileNo(e.target.value)}}
+		// 	    required
+		// 	    />
 	
-			  </Form.Group>
+		// 	  </Form.Group>
 
-			  <Form.Group className ="mb-3" controlId="password1">
-			    <Form.Label>Password</Form.Label>
-			    <Form.Control 
-			    type="password" 
-			    placeholder="Password" 
-			    value={password1}
-			    onChange={e => setPassword1(e.target.value)}
-			    required
-			    />
-			  </Form.Group>
+		// 	  <Form.Group className ="mb-3" controlId="password1">
+		// 	    <Form.Label>Password</Form.Label>
+		// 	    <Form.Control 
+		// 	    type="password" 
+		// 	    placeholder="Password" 
+		// 	    value={password1}
+		// 	    onChange={e => setPassword1(e.target.value)}
+		// 	    required
+		// 	    />
+		// 	  </Form.Group>
 
-			  <Form.Group controlId="password2">
-			    <Form.Label>Verify Password</Form.Label>
-			    <Form.Control
-			    type="password" 
-			    placeholder="Password" 
-			    value={password2}
-			    onChange={e => setPassword2(e.target.value)}
-			    required/>
-			  </Form.Group>
-			  {/*Conditionally renders button based on the active state*/}
-			  {
-			  	isActive ?
-			  	<Button variant="primary" type="submit" id="submitBtn">
-			  	  Submit
-			  	</Button>
-			  	:
-			  	<Button variant="danger" type="submit" id="submitBtn" disabled>
-			  	  Submit
-			  	</Button>
-			  }
+		// 	  <Form.Group controlId="password2">
+		// 	    <Form.Label>Verify Password</Form.Label>
+		// 	    <Form.Control
+		// 	    type="password" 
+		// 	    placeholder="Password" 
+		// 	    value={password2}
+		// 	    onChange={e => setPassword2(e.target.value)}
+		// 	    required/>
+		// 	  </Form.Group>
+		// 	  {/*Conditionally renders button based on the active state*/}
+		// 	  {
+		// 	  	isActive ?
+		// 	  	<Button variant="primary" type="submit" id="submitBtn">
+		// 	  	  Submit
+		// 	  	</Button>
+		// 	  	:
+		// 	  	<Button variant="danger" type="submit" id="submitBtn" disabled>
+		// 	  	  Submit
+		// 	  	</Button>
+		// 	  }
 
-			</Form>		
+		// 	</Form>		
 
-		</Container>
+		// </Container>
 	);
 };
 

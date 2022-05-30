@@ -18,6 +18,16 @@
   font-size: .8rem;
 }*/
 
+.signInInput {
+  padding-bottom: 40%!important;
+
+}
+
+.signUpInput {
+  padding-top: -50% !important;
+  
+}
+
 .logoName {
   font-family: 'Playfair Display', serif!important;
   font-size: 1rem;
@@ -60,32 +70,35 @@
 .home-section {
   background-color: #1e1e1e;
   color: white;
-  margin-top: -16px;
-  height: 550px;
+  margin-top: 0px;
+  height: 100%;
+  position: relative;
 }
 
 .home-section2 {
   /*background-color: #d69e2e;*/
   background-color: white;
   color: white;
-  margin-top: 228px;
-  height: 550px;
+  /*margin-top: 228px;*/
+  height: 100%;
 }
 
 .home-section3 {
   /*background-color: #d69e2e;*/
-  background-color: white;
+  /*background-color: ;*/
   color: white;
-  margin-top: -16px;
-  height: 1000px;
+  margin-top: -15%;
+  height: 100%;
 }
 
 .banner-title {
   font-family: 'Playfair Display', serif;
+  font-size: 5rem;
   font-weight: 100;
-  font-size: 7.4rem;
-  margin-top: 0px
+  margin-top: 0px;
+  /*background-color: green;*/
 }
+
 
 .banner-title-content {
   font-size: 1rem !important;
@@ -93,12 +106,21 @@
   margin-top: 60px;
 }
 
+.imageOne {
+  
+  padding-bottom: 35% !important;
+  padding-top: 20% !important;
+  height: 100%;
+  /*background-color: blue;*/
+  
+}
+
 .category-title {
   font-family: 'Playfair Display', serif;
   font-weight: 100;
   font-size: 3.5rem;
   color: #1e1e1e;
-  margin-top: 100px;
+  margin-top: 40%;
 }
 
 .category-title2{
@@ -125,7 +147,7 @@
   font-weight: 100;
   font-size: 3.5rem;
   color: #1e1e1e;
-  margin-top: 100px;
+  margin-top: 20%;
 }
 
 .productHome-title-content {
@@ -185,3 +207,4 @@
 .cartFooter {
   margin-bottom: 25% !important;
 }
+
