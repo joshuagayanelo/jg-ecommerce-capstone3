@@ -58,22 +58,25 @@ export default function Checkout() {
 
 return (
 
-	<Container maxW={'7xl'}>
+	<Container maxW={'7xl'} pl={20} pr={20}>
 
 	       <Stack spacing={{ base: 6, md: 10 }}>
 	         <Box as={'header'}>
-	           <Heading
-	             lineHeight={1.1}
-	             fontWeight={600}
-	             fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
-	             Php 12345
-	           </Heading>
 	           <Text
 	             color={useColorModeValue('gray.900', 'gray.400')}
 	             fontWeight={300}
-	             fontSize={'2xl'}>
-	             Total
+	             fontSize={'2xl'}
+	             mb={2}>
+	             Total Amount
 	           </Text>
+	           <Heading
+	           	mb={5}
+	             lineHeight={1.1}
+	             fontWeight={600}
+	             fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
+	             Php 32430
+	           </Heading>
+
 	         </Box>
 
 		         <Button
@@ -82,9 +85,11 @@ return (
 		           mt={8}
 		           size={'lg'}
 		           py={'7'}
+		           fontSize={'sm'}
+		           fontWeight={400}
 		           bg={useColorModeValue('gray.900', 'gray.50')}
 		           color={useColorModeValue('white', 'gray.900')}
-		           textTransform={'uppercase'}
+		           //textTransform={'uppercase'}
 		           _hover={{
 		             transform: 'translateY(2px)',
 		             boxShadow: 'lg',

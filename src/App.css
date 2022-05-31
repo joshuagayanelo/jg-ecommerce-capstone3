@@ -208,3 +208,18 @@
   margin-bottom: 25% !important;
 }
 
+.cartTitle {
+  font-size: 1.8rem !important;
+  font-weight: 500 !important;
+}
+
+/*.cartImage {
+  height:  200px !important;
+  width:  200px !important;
+}*/
+
+.cartDesc {
+  color: dimgray !important;
+  padding-bottom: 20px;
+
+}

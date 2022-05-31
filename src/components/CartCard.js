@@ -15,7 +15,8 @@ import {
   useDisclosure, 
   useToast, 
   Button, 
-  ButtonGroup
+  ButtonGroup,
+  Image
 } from '@chakra-ui/react'
 
 export default function CartCard({cartProp}) {
@@ -76,12 +77,19 @@ export default function CartCard({cartProp}) {
 	return (
 
 
-					<Container fluid className="mb-3">
+					<Container fluid className="mb-3" >
 						<Card>
 							<Card.Body>
-								<Card.Title>{productName}</Card.Title>
+							<Image
+							  boxSize='150px'
+							  objectFit='cover'
+							  src='./products/image1.jpg'
+							  alt='Dan Abramov'
+							  mb={4}
+							/>
+								<Card.Title className="cartTitle">{productName}</Card.Title>
 								<Card.Subtitle>Description: </Card.Subtitle>
-								<Card.Text>{description}</Card.Text>
+								<Card.Text className="cartDesc">{description}</Card.Text>
 								<Card.Text>SKU: {productSku}</Card.Text>
 								<Card.Text>Quantity: {qty}</Card.Text>
 								<Card.Text>Sub Total: Php {subTotal}</Card.Text>
